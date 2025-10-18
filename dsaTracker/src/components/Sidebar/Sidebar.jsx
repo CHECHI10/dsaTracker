@@ -1,8 +1,8 @@
 import {useRef} from 'react'
 
 function Sidebar({ isDark, sidebarOpen, secondaryBg, borderClass, hoverBg, }) {
-
   const sidebarRef = useRef(null)
+
   return (
     <aside ref={sidebarRef} className={`${sidebarOpen ? 'w-64' : 'w-0'} ${secondaryBg} border-r ${borderClass} transition-all duration-300 overflow-hidden`}>
       <nav className="p-6 space-y-6 h-full flex flex-col">
@@ -28,10 +28,10 @@ function Sidebar({ isDark, sidebarOpen, secondaryBg, borderClass, hoverBg, }) {
         </div>
         <div className="mt-auto pt-6 border-t border-slate-700">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-400 to-cyan-600 flex items-center justify-center text-white font-bold">U</div>
+            <div className="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-400 to-cyan-600 flex items-center justify-center text-white font-bold">C</div>
             <div className="text-sm">
-              <p className="font-semibold">User</p>
-              <p className={`${isDark ? 'text-gray-400' : 'text-gray-500'} text-xs`}>user@example.com</p>
+              <p className="font-semibold">CHECHI10</p>
+              <p className={`${isDark ? 'text-gray-400' : 'text-gray-500'} text-xs`}>rohitchechi10@gmail.com</p>
             </div>
           </div>
         </div>
