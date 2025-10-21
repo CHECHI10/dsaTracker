@@ -1,6 +1,5 @@
 import { StatusIcon, DifficultyBadge, TrashIcon } from "../Icons/Icons"
 import { useState } from "react"
-// import { useEffect, useRef } from "react"
 
 function ModalContent({ modalControls, problemsState, editState, theme }) {
 
@@ -11,7 +10,6 @@ function ModalContent({ modalControls, problemsState, editState, theme }) {
 
   const [showDeleteAllModal, setShowDeleteAllModal] = useState(false);
 
-  // const dropdownRef = useRef(null);
 
   const handlePracticeRandom = () => {
     if (problems.length === 0) {

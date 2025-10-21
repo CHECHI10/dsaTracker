@@ -26,7 +26,7 @@ function Sidebar({ isDark, sidebarOpen, secondaryBg, borderClass, hoverBg, }) {
             </li>
           </ul>
         </div>
-        <div className="mt-auto pt-6 border-t border-slate-700">
+        <div className="mt-auto pt-6 border-t border-slate-700 items-end">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-400 to-cyan-600 flex items-center justify-center text-white font-bold">C</div>
             <div className="text-sm">
