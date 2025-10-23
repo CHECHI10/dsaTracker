@@ -1,6 +1,12 @@
 import { Modal } from "../Utilis/Modal"
 
-function AddProbModal({ isDark, formData, problems, setProblems, setFormData, MODALS, activeModal, setActiveModal }) {
+function AddProbModal({ theme, problemsState, formDataState, modalControls }) {
+
+  const { isDark } = theme;
+  const { problems, setProblems } = problemsState;
+  const { formData, setFormData } = formDataState;
+  const { MODALS, activeModal, setActiveModal } = modalControls;
+
   const handleAddProblem = () => {
     if (formData.title.trim()) {
       const newProblem = {
@@ -59,6 +65,7 @@ function AddProbModal({ isDark, formData, problems, setProblems, setFormData, MO
         <button onClick={handleAddProblem} className="w-full mt-6 px-4 py-2 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white rounded-lg font-semibold hover:opacity-90 transition-opacity">Add Problem</button>
       </div>
     </Modal>
+    
   )
 }
 

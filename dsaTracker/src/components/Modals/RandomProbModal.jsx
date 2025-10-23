@@ -2,7 +2,7 @@ import { StatusIcon } from "../Utilis/Icons"
 import { DifficultyBadge } from "../Utilis/DifficultyBadge";
 import { Modal } from "../Utilis/Modal";
 
-function PracticeModal({ isDark, randomProblem, modalControls }) {
+function RandomProbModal({ isDark, randomProblem, modalControls }) {
   const { MODALS, activeModal, setActiveModal } = modalControls;
 
   return (
@@ -79,4 +79,4 @@ function PracticeModal({ isDark, randomProblem, modalControls }) {
   )
 }
 
-export default PracticeModal
+export default RandomProbModal

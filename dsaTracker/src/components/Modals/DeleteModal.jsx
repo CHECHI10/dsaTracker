@@ -24,6 +24,7 @@ function DeleteModal({ modalControls, editState, problemsState, theme }) {
 
   return (
     <>
+      {/* --- Delete Single Problem Confirmation Modal --- */}
       <Modal
         isOpen={activeModal === MODALS.DELETE_SINGLE}
         title="Confirm Deletion" isDark={isDark}
@@ -50,7 +51,7 @@ function DeleteModal({ modalControls, editState, problemsState, theme }) {
         </div>
       </Modal>
 
-      {/* --- Delete All Confirmation Modal --- */}
+      {/* --- Delete All Problems Confirmation Modal --- */}
       <Modal
         isOpen={activeModal === MODALS.DELETE_ALL}
         title='Confirm Delete All' isDark={isDark}

@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react'
 import Header from './components/Header/Header.jsx'
 import Sidebar from './components/Sidebar/Sidebar.jsx'
 import MainContent from './components/MainContent/MainContent.jsx'
-import ModalAddProb from './components/Modals/AddProbModal.jsx'
-import ModalRandomProb from './components/Modals/PracticeModal.jsx'
 // import useLocalStorage from './customHook/useLocalStorage.js'
 import './App.css'
 
@@ -21,7 +19,6 @@ export default function App() {
   const [problems, setProblems] = useState(InitialProblems)
 
   // modal states
-  // const [showAddModal, setShowAddModal] = useState(false)
   const [randomProblem, setRandomProblem] = useState(null)
   const [problemToDelete, setProblemToDelete] = useState(null);
   const [editingStatusProblemId, setEditingStatusProblemId] = useState(null); // New state for status dropdown
@@ -78,25 +75,6 @@ export default function App() {
           borderClass={borderClass}
           hoverBg={hoverBg}
         />
-
-        {/* <ModalAddProb
-          isDark={isDark}
-          problems={problems}
-          setProblems={setProblems}
-          formData={formData}
-          setFormData={setFormData}
-          // showAddModal={showAddModal}
-          // setShowAddModal={setShowAddModal}
-          MODALS={MODALS}
-          setActiveModal={setActiveModal}
-          activeModal={activeModal}
-        /> */}
-
-        {/* <ModalRandomProb
-          isDark={isDark}
-          randomProblem={randomProblem}
-          modalControls={{MODALS, activeModal, setActiveModal}}
-        /> */}
         <MainContent
           modalControls={{MODALS, activeModal, setActiveModal}}
           problemsState={{ problems, setProblems, randomProblem, setRandomProblem }}
