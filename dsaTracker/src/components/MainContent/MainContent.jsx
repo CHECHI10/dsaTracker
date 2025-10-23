@@ -1,13 +1,14 @@
-import { StatusIcon, DifficultyBadge, TrashIcon, Modal } from "../Icons/Icons"
-// import { useState } from "react"
-import ModalAddProb from "../Modals/ModalAddProb.jsx"
-import ModalDelete from "../Modals/ModalDelete.jsx";
+import { StatusIcon, TrashIcon } from "../Utilis/Icons"
+import { DifficultyBadge } from "../Utilis/DifficultyBadge";
+import AddProbModal from "../Modals/AddProbModal.jsx"
+import PracticeModal from "../Modals/PracticeModal.jsx"
+import DeleteModal from "../Modals/DeleteModal.jsx";
 
-function ModalContent({ modalControls, problemsState, editState, theme, formDataState }) {
+function MainContent({ modalControls, problemsState, editState, theme, formDataState }) {
 
   const { MODALS, activeModal, setActiveModal } = modalControls;
-  const { problems, setProblems, setRandomProblem } = problemsState;
-  const { problemDelete, setProblemDelete, editingStatusProblemId, setEditingStatusProblemId } = editState;
+  const { problems, setProblems, randomProblem, setRandomProblem } = problemsState;
+  const { problemToDelete, setProblemToDelete, editingStatusProblemId, setEditingStatusProblemId } = editState;
   const { isDark, hoverBg } = theme;
   const { formData, setFormData } = formDataState;
 
@@ -34,7 +35,7 @@ function ModalContent({ modalControls, problemsState, editState, theme, formData
   };
 
   const handleDeleteProblem = (problem) => {
-    setProblemDelete(problem);
+    setProblemToDelete(problem);
     setActiveModal(MODALS.DELETE_SINGLE);
   };
 
@@ -48,7 +49,7 @@ function ModalContent({ modalControls, problemsState, editState, theme, formData
 
     <>
 
-      <ModalAddProb
+      <AddProbModal
         isDark={isDark}
         problems={problems}
         setProblems={setProblems}
@@ -58,6 +59,12 @@ function ModalContent({ modalControls, problemsState, editState, theme, formData
         setActiveModal={setActiveModal}
         activeModal={activeModal}
       />
+
+      <PracticeModal
+          isDark={isDark}
+          randomProblem={randomProblem}
+          modalControls={{MODALS, activeModal, setActiveModal}}
+        />
 
       <main className="flex-1 p-6 lg:p-8">
         <div className="max-w-7xl mx-auto space-y-6">
@@ -74,17 +81,6 @@ function ModalContent({ modalControls, problemsState, editState, theme, formData
                 handlePracticeRandom();
               }}
               className={`px-6 py-2 ${isDark ? 'bg-slate-700' : 'bg-gray-200'} rounded-lg font-semibold ${isDark ? 'hover:bg-slate-600' : 'hover:bg-gray-300'} transition-colors`}>🎲 Practice Random</button>
-
-            {/* <button
-            onClick={() => {
-              handlePracticeRandom();
-              if (problems.length) {
-                setActiveModal(MODALS.RANDOM_PROBLEM);
-              } else {
-                setActiveModal(MODALS.NONE);
-              }
-            }}
-            className={`px-6 py-2 ${isDark ? 'bg-slate-700' : 'bg-gray-200'} rounded-lg font-semibold ${isDark ? 'hover:bg-slate-600' : 'hover:bg-gray-300'} transition-colors`}>🎲 Practice Random</button> */}
 
             <button
               onClick={deleteAllProblems}
@@ -171,9 +167,9 @@ function ModalContent({ modalControls, problemsState, editState, theme, formData
             </div>
           </div>
 
-          <ModalDelete
+          <DeleteModal
             modalControls={{ MODALS, activeModal, setActiveModal }}
-            editState={{ problemDelete }}
+            editState={{ problemToDelete }}
             problemsState={{ problems, setProblems }}
             theme={{ isDark }}
           />
@@ -186,4 +182,4 @@ function ModalContent({ modalControls, problemsState, editState, theme, formData
   )
 }
 
-export default ModalContent
+export default MainContent

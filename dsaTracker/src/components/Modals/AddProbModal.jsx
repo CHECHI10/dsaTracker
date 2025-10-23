@@ -1,6 +1,6 @@
-import { Modal } from "../Icons/Icons"
+import { Modal } from "../Utilis/Modal"
 
-function ModalAddProb({ isDark, formData, problems, setProblems, setFormData, MODALS, activeModal, setActiveModal }) {
+function AddProbModal({ isDark, formData, problems, setProblems, setFormData, MODALS, activeModal, setActiveModal }) {
   const handleAddProblem = () => {
     if (formData.title.trim()) {
       const newProblem = {
@@ -62,4 +62,4 @@ function ModalAddProb({ isDark, formData, problems, setProblems, setFormData, MO
   )
 }
 
-export default ModalAddProb
+export default AddProbModal

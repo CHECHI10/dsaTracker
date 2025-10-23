@@ -1,4 +1,4 @@
-import { SunIcon, MoonIcon, HamburgerIcon, CloseIcon } from '../Icons/Icons.jsx';
+import { SunIcon, MoonIcon, HamburgerIcon, CloseIcon } from '../Utilis/Icons.jsx';
 
 function Header({ isDark, setIsDark, sidebarOpen, setSidebarOpen, secondaryBg, borderClass, hoverBg }) {
 
@@ -16,8 +16,8 @@ function Header({ isDark, setIsDark, sidebarOpen, setSidebarOpen, secondaryBg, b
           <h1 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">DSA Tracker</h1>
         </div>
         <div className="flex items-center gap-4">
-          <button className="p-1 ">Login</button>
-          <button>Sign Up</button>
+          <button className='bg-gray-600 hover:bg-gray-500 px-6 py-2.5 text-base font-semibold rounded-lg cursor-not-allowed' title='Not Yet Implemented'>Login</button>
+          <button className='bg-gray-600 hover:bg-gray-500 px-6 py-2.5 text-base font-semibold rounded-lg cursor-not-allowed' title='Not Yet Implemented'>Sign Up</button>
           <button
             onClick={() => setIsDark(!isDark)}
             className={`p-2 rounded-lg ${hoverBg} transition-colors`}

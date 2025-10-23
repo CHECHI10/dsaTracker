@@ -1,15 +1,15 @@
-import { Modal } from "../Icons/Icons";
+import { Modal } from "../Utilis/Modal";
 
-function ModalDelete({ modalControls, editState, problemsState, theme }) {
+function DeleteModal({ modalControls, editState, problemsState, theme }) {
 
   const { MODALS, activeModal, setActiveModal } = modalControls;
-  const { problemDelete } = editState;
+  const { problemToDelete } = editState;
   const { problems, setProblems } = problemsState;
   const { isDark } = theme;
 
   const handleConfirmDelete = () => {
-    if (problemDelete) {
-      setProblems(problems.filter(p => p.id !== problemDelete.id));
+    if (problemToDelete) {
+      setProblems(problems.filter(p => p.id !== problemToDelete.id));
       setActiveModal(MODALS.NONE);
     }
   };
@@ -20,7 +20,7 @@ function ModalDelete({ modalControls, editState, problemsState, theme }) {
 
   }
 
-  console.log(problemDelete);
+  console.log(problemToDelete);
 
   return (
     <>
@@ -32,7 +32,7 @@ function ModalDelete({ modalControls, editState, problemsState, theme }) {
         }
       >
         <p className="text-gray-300 my-4 text-m">
-          Are you sure you want to delete the problem "<span className="font-bold text-red-400">{problemDelete?.title}</span>"? This action cannot be undone.
+          Are you sure you want to delete the problem "<span className="font-bold text-red-400">{problemToDelete?.title}</span>"? This action cannot be undone.
         </p>
         <div className="flex justify-end space-x-4 mt-6">
           <button
@@ -81,4 +81,4 @@ function ModalDelete({ modalControls, editState, problemsState, theme }) {
   )
 }
 
-export default ModalDelete
+export default DeleteModal

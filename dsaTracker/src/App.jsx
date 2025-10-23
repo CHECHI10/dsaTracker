@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import Header from './components/Header/Header.jsx'
 import Sidebar from './components/Sidebar/Sidebar.jsx'
-import ModalContent from './components/MainContent/ModalContent.jsx'
-import ModalAddProb from './components/Modals/ModalAddProb.jsx'
-import ModalRandomProb from './components/Modals/ModalRandomProb.jsx'
+import MainContent from './components/MainContent/MainContent.jsx'
+import ModalAddProb from './components/Modals/AddProbModal.jsx'
+import ModalRandomProb from './components/Modals/PracticeModal.jsx'
 // import useLocalStorage from './customHook/useLocalStorage.js'
 import './App.css'
 
@@ -23,7 +23,7 @@ export default function App() {
   // modal states
   // const [showAddModal, setShowAddModal] = useState(false)
   const [randomProblem, setRandomProblem] = useState(null)
-  const [problemDelete, setProblemDelete] = useState(null);
+  const [problemToDelete, setProblemToDelete] = useState(null);
   const [editingStatusProblemId, setEditingStatusProblemId] = useState(null); // New state for status dropdown
 
   const MODALS = {
@@ -31,7 +31,7 @@ export default function App() {
     ADD_PROBLEM: 'addProblem',
     RANDOM_PROBLEM: 'randomProblem',
     NO_PROBLEMS_ERROR: 'noProblemsError',
-    // EDIT_PROBLEM: 'editProblem',
+    EDIT_PROBLEM: 'editProblem',
     DELETE_SINGLE: 'deleteSingle',
     DELETE_ALL: 'deleteAll',
   };
@@ -92,15 +92,15 @@ export default function App() {
           activeModal={activeModal}
         /> */}
 
-        <ModalRandomProb
+        {/* <ModalRandomProb
           isDark={isDark}
           randomProblem={randomProblem}
           modalControls={{MODALS, activeModal, setActiveModal}}
-        />
-        <ModalContent
+        /> */}
+        <MainContent
           modalControls={{MODALS, activeModal, setActiveModal}}
-          problemsState={{ problems, setProblems, setRandomProblem }}
-          editState={{ problemDelete, setProblemDelete,editingStatusProblemId, setEditingStatusProblemId }}
+          problemsState={{ problems, setProblems, randomProblem, setRandomProblem }}
+          editState={{ problemToDelete, setProblemToDelete, editingStatusProblemId, setEditingStatusProblemId }}
           theme={{ isDark, hoverBg }}
           formDataState={{ formData, setFormData }}
         />

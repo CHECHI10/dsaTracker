@@ -1,6 +1,8 @@
-import { Modal, DifficultyBadge, StatusIcon } from "../Icons/Icons"
+import { StatusIcon } from "../Utilis/Icons"
+import { DifficultyBadge } from "../Utilis/DifficultyBadge";
+import { Modal } from "../Utilis/Modal";
 
-function ModalRandomProb({ isDark, randomProblem, modalControls }) {
+function PracticeModal({ isDark, randomProblem, modalControls }) {
   const { MODALS, activeModal, setActiveModal } = modalControls;
 
   return (
@@ -62,13 +64,13 @@ function ModalRandomProb({ isDark, randomProblem, modalControls }) {
                 {randomProblem.status}
               </p>
             </div>
-            <button onClick={() => setActiveModal(MODALS.NONE)} className="w-full mt-6 mr-2 px-4 py-2 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white rounded-lg font-semibold hover:opacity-90 transition-opacity">
+            <button onClick={() => setActiveModal(MODALS.NONE)} className="w-3/4 mt-6 mr-2 px-4 py-2 bg-gradient-to-r from-cyan-400 to-cyan-700 text-white rounded-lg font-semibold hover:opacity-90 transition-opacity">
               {randomProblem.link ? <a href={randomProblem.link} target="_blank">Start Practicing</a> : 'No Link Available'}
             </button>
-           
-           {/*  <button className="w-auto mt-6 px-4 py-2 rounded-lg  bg-slate-700 text-white hover:bg-slate-600 transition-colors" onClick={() => handlePracticeRandom()}>
+
+            <button className="w-auto mt-6 px-4 py-2 rounded-lg  bg-slate-700 text-white hover:bg-slate-600 transition-colors" /* onClick={() => setActiveModal(MODALS.RANDOM_PROBLEM)} */>
               Reload
-            </button> */}
+            </button>
           </div>
         )}
       </Modal>
@@ -77,4 +79,4 @@ function ModalRandomProb({ isDark, randomProblem, modalControls }) {
   )
 }
 
-export default ModalRandomProb
+export default PracticeModal

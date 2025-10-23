@@ -31,6 +31,15 @@ export const CloseIcon = () => (
   </svg>
 );
 
+export const TrashIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="3 6 5 6 21 6"></polyline>
+    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+    <line x1="10" y1="11" x2="10" y2="17"></line>
+    <line x1="14" y1="11" x2="14" y2="17"></line>
+  </svg>
+);
+
 export const CheckCircleIcon = () => (
   <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
     <path
@@ -68,44 +77,3 @@ export const StatusIcon = ({ status }) => {
       return <UnsolvedCircleIcon />
   }
 }
-
-export const DifficultyBadge = ({ difficulty, isDark }) => {
-  const bgColor =
-    difficulty === 'Easy' ? (isDark ? 'bg-green-900' : 'bg-green-200') :
-      difficulty === 'Medium' ? (isDark ? 'bg-yellow-900' : 'bg-yellow-200') :
-        (isDark ? 'bg-red-900' : 'bg-red-200')
-
-  const textColor =
-    difficulty === 'Easy' ? (isDark ? 'text-green-300' : 'text-green-700') : difficulty === 'Medium' ? (isDark ? 'text-yellow-300' : 'text-yellow-700') : (isDark ? 'text-red-300' : 'text-red-700')
-
-  return (
-    <span className={`px-3 py-1 rounded-full text-sm font-medium ${bgColor} ${textColor}`}>
-      {difficulty}
-    </span>
-  )
-}
-
-export const Modal = ({ isOpen, title, children, isDark, onClose }) => {
-  if (!isOpen) return null
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black 
-    bg-opacity-50 p-4 backdrop-blur-sm"
-      onClick={onClose}
-    >
-      <div className={`rounded-lg shadow-xl p-6 w-full max-w-md backdrop-blur-sm border ${isDark ? 'bg-slate-800 bg-opacity-50 border-slate-700' : 'bg-white bg-opacity-50 border-white'}`}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="flex justify-between items-center mb-4">
-          <h2 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>{title}</h2>
-          <button onClick={onClose} className={`transition-colors ${isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'} `}>
-            <CloseIcon />
-          </button>
-        </div>
-        {children}
-      </div>
-    </div>
-  )
-}
-
-export const TrashIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>;
