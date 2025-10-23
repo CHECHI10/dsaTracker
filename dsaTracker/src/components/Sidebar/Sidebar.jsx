@@ -1,6 +1,9 @@
 import {useRef} from 'react'
 
-function Sidebar({ isDark, sidebarOpen, secondaryBg, borderClass, hoverBg, }) {
+function Sidebar({ sidebar, theme }) {
+  const { sidebarOpen } = sidebar;
+  const { secondaryBg, borderClass, hoverBg, isDark } = theme;
+
   const sidebarRef = useRef(null)
 
   return (

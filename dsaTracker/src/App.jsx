@@ -28,7 +28,7 @@ export default function App() {
     ADD_PROBLEM: 'addProblem',
     RANDOM_PROBLEM: 'randomProblem',
     NO_PROBLEMS_ERROR: 'noProblemsError',
-    EDIT_PROBLEM: 'editProblem',
+    // EDIT_PROBLEM: 'editProblem',
     DELETE_SINGLE: 'deleteSingle',
     DELETE_ALL: 'deleteAll',
   };
@@ -54,26 +54,20 @@ export default function App() {
   const borderClass = isDark ? 'border-slate-700' : 'border-gray-200'
   const hoverBg = isDark ? 'hover:bg-slate-700' : 'hover:bg-gray-100'
 
+
+
   return (
     <div className={`${bgClass} ${textClass} min-h-screen font-sans transition-colors duration-300`}>
-
+      
       <Header
-        isDark={isDark}
-        setIsDark={setIsDark}
-        sidebarOpen={sidebarOpen}
-        setSidebarOpen={setSidebarOpen}
-        secondaryBg={secondaryBg}
-        borderClass={borderClass}
-        hoverBg={hoverBg}
+        theme={{ isDark, hoverBg, setIsDark, secondaryBg,borderClass }}
+        sidebar={{ sidebarOpen, setSidebarOpen }}
       />
-
+      
       <div className="flex">
         <Sidebar
-          isDark={isDark}
-          sidebarOpen={sidebarOpen}
-          secondaryBg={secondaryBg}
-          borderClass={borderClass}
-          hoverBg={hoverBg}
+          theme={{ secondaryBg, borderClass, hoverBg, isDark }}
+          sidebar={{ sidebarOpen }}
         />
         <MainContent
           modalControls={{MODALS, activeModal, setActiveModal}}
@@ -82,9 +76,7 @@ export default function App() {
           theme={{ isDark, hoverBg }}
           formDataState={{ formData, setFormData }}
         />
-
       </div>
-
 
     </div>
   )

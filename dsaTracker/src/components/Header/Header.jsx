@@ -1,6 +1,9 @@
 import { SunIcon, MoonIcon, HamburgerIcon, CloseIcon } from '../Utilis/Icons.jsx';
 
-function Header({ isDark, setIsDark, sidebarOpen, setSidebarOpen, secondaryBg, borderClass, hoverBg }) {
+function Header({ theme, sidebar }) {
+
+  const { isDark, hoverBg, setIsDark, secondaryBg, borderClass } = theme;
+  const { sidebarOpen, setSidebarOpen } = sidebar;
 
   return (
     <header className={`${secondaryBg} border-b ${borderClass} sticky top-0 z-40 transition-colors duration-300`}>
