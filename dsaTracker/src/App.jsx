@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import Header from './components/Header/Header.jsx'
 import Sidebar from './components/Sidebar/Sidebar.jsx'
 import ModalContent from './components/MainContent/ModalContent.jsx'
-import ModalAddProb from './components/MainContent/ModalAddProb.jsx'
-import ModalRandomProb from './components/MainContent/ModalRandomProb.jsx'
+import ModalAddProb from './components/Modals/ModalAddProb.jsx'
+import ModalRandomProb from './components/Modals/ModalRandomProb.jsx'
 // import useLocalStorage from './customHook/useLocalStorage.js'
 import './App.css'
 
@@ -21,11 +21,23 @@ export default function App() {
   const [problems, setProblems] = useState(InitialProblems)
 
   // modal states
-  const [showAddModal, setShowAddModal] = useState(false)
-  const [showRandomModal, setShowRandomModal] = useState(false)
+  // const [showAddModal, setShowAddModal] = useState(false)
   const [randomProblem, setRandomProblem] = useState(null)
   const [problemDelete, setProblemDelete] = useState(null);
   const [editingStatusProblemId, setEditingStatusProblemId] = useState(null); // New state for status dropdown
+
+  const MODALS = {
+    NONE: null,
+    ADD_PROBLEM: 'addProblem',
+    RANDOM_PROBLEM: 'randomProblem',
+    NO_PROBLEMS_ERROR: 'noProblemsError',
+    // EDIT_PROBLEM: 'editProblem',
+    DELETE_SINGLE: 'deleteSingle',
+    DELETE_ALL: 'deleteAll',
+  };
+
+  const [activeModal, setActiveModal] = useState(MODALS.NONE);
+  
   const [formData, setFormData] = useState({ title: '', platform: 'LeetCode', status: 'Unsolved', difficulty: 'Medium', link: '' })
 
   useEffect(() => {
@@ -67,27 +79,30 @@ export default function App() {
           hoverBg={hoverBg}
         />
 
-        <ModalAddProb
+        {/* <ModalAddProb
           isDark={isDark}
           problems={problems}
           setProblems={setProblems}
           formData={formData}
           setFormData={setFormData}
-          showAddModal={showAddModal}
-          setShowAddModal={setShowAddModal}
-        />
+          // showAddModal={showAddModal}
+          // setShowAddModal={setShowAddModal}
+          MODALS={MODALS}
+          setActiveModal={setActiveModal}
+          activeModal={activeModal}
+        /> */}
 
         <ModalRandomProb
-          setShowRandomModal={setShowRandomModal}
-          showRandomModal={showRandomModal}
           isDark={isDark}
           randomProblem={randomProblem}
+          modalControls={{MODALS, activeModal, setActiveModal}}
         />
         <ModalContent
-          modalControls={{ setShowAddModal, setShowRandomModal }}
+          modalControls={{MODALS, activeModal, setActiveModal}}
           problemsState={{ problems, setProblems, setRandomProblem }}
-          editState={{ problemDelete, setProblemDelete, editingStatusProblemId, setEditingStatusProblemId }}
+          editState={{ problemDelete, setProblemDelete,editingStatusProblemId, setEditingStatusProblemId }}
           theme={{ isDark, hoverBg }}
+          formDataState={{ formData, setFormData }}
         />
 
       </div>

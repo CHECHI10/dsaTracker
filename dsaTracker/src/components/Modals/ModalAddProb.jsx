@@ -1,6 +1,6 @@
 import { Modal } from "../Icons/Icons"
 
-function ModalAddProb({ isDark, formData, problems, showAddModal, setProblems, setFormData, setShowAddModal }) {
+function ModalAddProb({ isDark, formData, problems, setProblems, setFormData, MODALS, activeModal, setActiveModal }) {
   const handleAddProblem = () => {
     if (formData.title.trim()) {
       const newProblem = {
@@ -14,13 +14,15 @@ function ModalAddProb({ isDark, formData, problems, showAddModal, setProblems, s
       }
 
       setProblems([newProblem, ...problems])
-      setFormData({ title: '', platform: 'LeetCode', status: 'Unsolved', difficulty: 'Medium', link: '' })
-      setShowAddModal(false)
+      setActiveModal(MODALS.NONE)
+      
     }
   }
-
+  console.log('Active Modal:', activeModal);
+  console.log('Should Edit Modal Open?', activeModal === MODALS.EDIT_PROBLEM);
+  // debug
   return (
-    <Modal isOpen={showAddModal} title="Add New Problem" isDark={isDark} onClose={() => setShowAddModal(false)}>
+    <Modal isOpen={activeModal === MODALS.ADD_PROBLEM} title="Add New Problem" isDark={isDark} onClose={() => setActiveModal(MODALS.NONE)}>
       <div className="space-y-4">
         <div>
           <label className={`block text-sm font-medium mb-2 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>Title</label>
