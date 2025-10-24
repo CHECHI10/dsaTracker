@@ -1,29 +1,33 @@
-import { StatusIcon, TrashIcon } from "../Utilis/Icons"
-import { DifficultyBadge } from "../Utilis/DifficultyBadge";
+import { StatusIcon, TrashIcon } from "../Utils/Icons.jsx"
+import { DifficultyBadge } from "../Utils/DifficultyBadge.jsx";
 import ProblemRow from "./ProblemRow.jsx";
-import DeleteModal from "../Modals/DeleteModal.jsx";
 
 function ProblemTable({ editState, theme, modalControls, problemsState }) {
 
-  const { problemToDelete, setProblemToDelete, editingStatusProblemId, setEditingStatusProblemId } = editState;
+  const { setProblemToDelete,setUpdateStatusProblem } = editState;
   const { isDark, hoverBg } = theme;
-  const { MODALS, activeModal, setActiveModal } = modalControls;
-  const { problems, setProblems } = problemsState;
-
-  // New status update handler
-  const handleUpdateStatus = (problemId, newStatus) => {
-    setProblems(problems.map(p =>
-      p.id === problemId
-        ? { ...p, status: newStatus, lastSolved: "Today" }
-        : p
-    ));
-    setEditingStatusProblemId(null); // Close dropdown after selection
-  };
+  const { MODALS, setActiveModal } = modalControls;
+  const { problems } = problemsState;
 
   const handleDeleteProblem = (problem) => {
     setProblemToDelete(problem);
     setActiveModal(MODALS.DELETE_SINGLE);
   };
+
+  /* const formatTimeAgo = (date) => {
+    const now = new Date();
+    const seconds = Math.floor((now - date) / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    const months = Math.floor(days / 30);
+
+    if (minutes < 1) return 'Just now';
+    if (hours < 1) return `${minutes} minutes${minutes === 1 ? '' : 's'} ago`;
+    if (days < 1) return `${hours} hour${hours === 1 ? '' : 's'} ago`;
+    if(months < 1) return `${days} day${days === 1 ? '' : 's'} ago`;
+    return `${months} month${months === 1 ? '' : 's'} ago`;
+  } */
 
   return (
     <>
@@ -37,37 +41,25 @@ function ProblemTable({ editState, theme, modalControls, problemsState }) {
               {problems.map((problem, idx) => (
                 <tr key={problem.id} className={`${idx % 2 === 0 ? (isDark ? 'bg-slate-800 bg-opacity-20' : 'bg-white bg-opacity-20') : ''} ${hoverBg} transition-colors hover:cursor-pointer`}>
                   <td className="relative px-6 py-4">
-                    <button
-                      onClick={(e) => { e.stopPropagation(); setEditingStatusProblemId(problem.id) }}
+
+                    {<button
+                      onClick={() => {
+                        setUpdateStatusProblem(problem);
+                        setActiveModal(MODALS.UPDATE_STATUS)
+                      }}
                       className="flex items-center justify-center"
+                      title="Click to update status"
                     >
                       <StatusIcon status={problem.status} />
-                    </button>
+                    </button>}
 
-                    {editingStatusProblemId === problem.id && (
-                      <div className="absolute left-1/2 -top-1/3 ml-1 mt-1 z-50 w-32 h-auto
-   bg-slate-800 border border-white/20 rounded-xl shadow-2xl
-  ring-1 ring-white/10 overflow-hidden transition-all duration-200">
-                        {["Solved", "Attempted", "Unsolved"].map((status) => (
-                          <button
-                            key={status}
-                            onClick={() => { handleUpdateStatus(problem.id, status) }}
-                            className="flex items-center gap-3 px-3 py-2 text-sm text-slate-200 
-                       hover:bg-[var(--bg-tertiary)] hover:text-white transition-colors"
-                          >
-                            <StatusIcon status={status} />
-                            <span className="capitalize">{status}</span>
-                          </button>
-                        ))}
-                      </div>
-                    )}
                   </td>
 
-                  <td className="px-6 py-4 font-medium">{problem.title}</td>
+                  <td className="px-6 py-4 font-medium text-lg">{problem.title}</td>
                   <td className="px-6 py-4">
                     <DifficultyBadge difficulty={problem.difficulty} isDark={isDark} />
                   </td>
-                  <td className="px-6 py-4 text-sm">{problem.platform}</td>
+                  <td className="px-6 py-4 text-base">{problem.platform}</td>
                   <td className={`px-6 py-4 text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>{problem.lastUpdate}</td>
                   <td className={`px-6 py-4 text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>{problem.link ? (
                     <a
@@ -93,13 +85,6 @@ function ProblemTable({ editState, theme, modalControls, problemsState }) {
           </table>
         </div>
       </div>
-      <DeleteModal
-        modalControls={{ MODALS, activeModal, setActiveModal }}
-        editState={{ problemToDelete }}
-        problemsState={{ problems, setProblems }}
-        theme={{ isDark }}
-      />
-
     </>
   )
 }

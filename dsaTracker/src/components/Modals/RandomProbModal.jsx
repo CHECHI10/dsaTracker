@@ -1,9 +1,11 @@
-import { StatusIcon } from "../Utilis/Icons"
-import { DifficultyBadge } from "../Utilis/DifficultyBadge";
-import { Modal } from "../Utilis/Modal";
+import { StatusIcon } from "../Utils/Icons"
+import { DifficultyBadge } from "../Utils/DifficultyBadge";
+import { Modal } from "../Utils/Modal";
 
-function RandomProbModal({ isDark, randomProblem, modalControls }) {
+function RandomProbModal({ theme, problemsState, modalControls }) {
   const { MODALS, activeModal, setActiveModal } = modalControls;
+  const { isDark } = theme;
+  const { randomProblem } = problemsState;
 
   return (
     <>
@@ -20,7 +22,7 @@ function RandomProbModal({ isDark, randomProblem, modalControls }) {
           </p>
           <div className="flex gap-3">
             <button
-              onClick={() => setActiveModal(MODALS.ADD_PROBLEM)}  // Open Add modal
+              onClick={() => setActiveModal(MODALS.ADD_PROBLEM)}
               className="px-4 py-2 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white rounded-lg font-semibold hover:opacity-90"
             >
               Add Problem Now
@@ -75,7 +77,6 @@ function RandomProbModal({ isDark, randomProblem, modalControls }) {
         )}
       </Modal>
     </>
-
   )
 }
 

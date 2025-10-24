@@ -1,8 +1,9 @@
-import {useRef} from 'react'
+import { useRef } from 'react'
 
-function Sidebar({ sidebar, theme }) {
+function Sidebar({ sidebar, theme, modalControls }) {
   const { sidebarOpen } = sidebar;
   const { secondaryBg, borderClass, hoverBg, isDark } = theme;
+  const { MODALS, setActiveModal } = modalControls;
 
   const sidebarRef = useRef(null)
 
@@ -13,19 +14,27 @@ function Sidebar({ sidebar, theme }) {
           <p className="text-xs font-semibold text-cyan-400 uppercase tracking-wider mb-3">Navigation</p>
           <ul className="space-y-2">
             <li>
-              <a href="#" className={`block px-4 py-2 rounded-lg ${hoverBg} transition-colors`}>
+              <a href="#" className={`block px-4 py-2 rounded-lg cursor-not-allowed ${hoverBg} transition-colors`}>
                 Dashboard
               </a>
             </li>
             <li>
-              <a href="#" className={`block px-4 py-2 rounded-lg ${hoverBg} transition-colors`}>
+              <a href="#" className={`block px-4 py-2 rounded-lg cursor-not-allowed ${hoverBg} transition-colors`}>
                 Topics
               </a>
             </li>
             <li>
-              <a href="#" className={`block px-4 py-2 rounded-lg ${hoverBg} transition-colors`}>
+              <a href="#" className={`block px-4 py-2 rounded-lg cursor-not-allowed ${hoverBg} transition-colors`}>
                 Statistics
               </a>
+            </li>
+            <li>
+              <button
+                onClick={() => setActiveModal(MODALS.HELP)}
+                className={`block px-4 py-2 rounded-lg ${hoverBg} transition-colors`}
+              >
+                {/* ⌨️ */}Keyboard Shortcuts
+              </button>     
             </li>
           </ul>
         </div>

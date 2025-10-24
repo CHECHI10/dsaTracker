@@ -21,16 +21,18 @@ export default function App() {
   // modal states
   const [randomProblem, setRandomProblem] = useState(null)
   const [problemToDelete, setProblemToDelete] = useState(null);
-  const [editingStatusProblemId, setEditingStatusProblemId] = useState(null); // New state for status dropdown
+  const [updateStatusProblem, setUpdateStatusProblem] = useState(null); // New state for status dropdown
 
   const MODALS = {
     NONE: null,
     ADD_PROBLEM: 'addProblem',
     RANDOM_PROBLEM: 'randomProblem',
     NO_PROBLEMS_ERROR: 'noProblemsError',
+    UPDATE_STATUS: 'updateStatus',
     // EDIT_PROBLEM: 'editProblem',
     DELETE_SINGLE: 'deleteSingle',
     DELETE_ALL: 'deleteAll',
+    HELP: 'help',
   };
 
   const [activeModal, setActiveModal] = useState(MODALS.NONE);
@@ -66,14 +68,16 @@ export default function App() {
       
       <div className="flex">
         <Sidebar
+          modalControls={{ MODALS, activeModal, setActiveModal }}
           theme={{ secondaryBg, borderClass, hoverBg, isDark }}
           sidebar={{ sidebarOpen }}
         />
         <MainContent
           modalControls={{MODALS, activeModal, setActiveModal}}
           problemsState={{ problems, setProblems, randomProblem, setRandomProblem }}
-          editState={{ problemToDelete, setProblemToDelete, editingStatusProblemId, setEditingStatusProblemId }}
-          theme={{ isDark, hoverBg }}
+          editState={{ problemToDelete, setProblemToDelete, updateStatusProblem, setUpdateStatusProblem }}
+          theme={{ isDark, hoverBg, setIsDark }}
+          sidebar={{ sidebarOpen, setSidebarOpen }}
           formDataState={{ formData, setFormData }}
         />
       </div>

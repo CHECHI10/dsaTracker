@@ -1,4 +1,4 @@
-import { Modal } from "../Utilis/Modal"
+import { Modal } from "../Utils/Modal"
 
 function AddProbModal({ theme, problemsState, formDataState, modalControls }) {
 
@@ -21,12 +21,9 @@ function AddProbModal({ theme, problemsState, formDataState, modalControls }) {
 
       setProblems([newProblem, ...problems])
       setActiveModal(MODALS.NONE)
-      
     }
   }
-  console.log('Active Modal:', activeModal);
-  console.log('Should Edit Modal Open?', activeModal === MODALS.EDIT_PROBLEM);
-  // debug
+
   return (
     <Modal isOpen={activeModal === MODALS.ADD_PROBLEM} title="Add New Problem" isDark={isDark} onClose={() => setActiveModal(MODALS.NONE)}>
       <div className="space-y-4">
@@ -65,7 +62,7 @@ function AddProbModal({ theme, problemsState, formDataState, modalControls }) {
         <button onClick={handleAddProblem} className="w-full mt-6 px-4 py-2 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white rounded-lg font-semibold hover:opacity-90 transition-opacity">Add Problem</button>
       </div>
     </Modal>
-    
+
   )
 }
 

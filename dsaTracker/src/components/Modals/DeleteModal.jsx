@@ -1,4 +1,4 @@
-import { Modal } from "../Utilis/Modal";
+import { Modal } from "../Utils/Modal";
 
 function DeleteModal({ modalControls, editState, problemsState, theme }) {
 
@@ -19,8 +19,6 @@ function DeleteModal({ modalControls, editState, problemsState, theme }) {
     setActiveModal(MODALS.NONE);
 
   }
-
-  console.log(problemToDelete);
 
   return (
     <>

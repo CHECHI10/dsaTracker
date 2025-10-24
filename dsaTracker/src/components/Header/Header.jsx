@@ -1,4 +1,4 @@
-import { SunIcon, MoonIcon, HamburgerIcon, CloseIcon } from '../Utilis/Icons.jsx';
+import { SunIcon, MoonIcon, HamburgerIcon, CloseIcon } from '../Utils/Icons.jsx';
 
 function Header({ theme, sidebar }) {
 

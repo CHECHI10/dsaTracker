@@ -1,22 +1,8 @@
 
-function Actionbar({problemsState, modalControls, theme}) {
-  const { problems, setRandomProblem } = problemsState;
+function Actionbar({ problemsState, modalControls, theme, handlePracticeRandom }) {
+  const { problems } = problemsState;
   const { MODALS, setActiveModal } = modalControls;
   const { isDark } = theme;
-
-
-  const handlePracticeRandom = () => {
-
-    if (problems.length === 0) {
-      setActiveModal(MODALS.NO_PROBLEMS_ERROR);
-      return;
-
-    }
-    // to pick a random problem
-    const random = problems[Math.floor(Math.random() * problems.length)]
-    setRandomProblem(random);
-    setActiveModal(MODALS.RANDOM_PROBLEM);
-  }
 
   const deleteAllProblems = () => {
     // Open a confirmation modal instead of deleting immediately
@@ -26,10 +12,10 @@ function Actionbar({problemsState, modalControls, theme}) {
   return (
     <>
       {/* Action Buttons */}
-      <div className="flex flex-wrap justify-between items-center gap-4">
-        <p className="text-lg font-semibold text-gray-800 dark:text-gray-200">
-          My DSA Progress
-        </p>
+      <div className="flex flex-wrap justify-between items-center gap-4"> 
+          <p className={`text-2xl font-bold ${isDark ? 'text-gray-300' : 'text-gray-800'}`}>
+            My DSA Progress
+          </p>
 
         <div className="flex flex-wrap items-center gap-3">
           <button
