@@ -43,12 +43,23 @@ export const RefreshIcon = () => (
 );
 
 export const TrashIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <polyline points="3 6 5 6 21 6"></polyline>
     <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
     <line x1="10" y1="11" x2="10" y2="17"></line>
     <line x1="14" y1="11" x2="14" y2="17"></line>
   </svg>
+);
+
+export const EditIcon = () => (
+  <>
+   {/*  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="18" height="18" viewBox="0 0 50 50">
+      <path d="M31.979 13.686l4.336 4.336-21.29 21.29-4.914 1.644c-.658.22-1.285-.407-1.065-1.065l1.644-4.914L31.979 13.686zM32.686 12.979l3.539-3.539c.586-.586 1.536-.586 2.121 0l2.214 2.214c.586.586.586 1.536 0 2.121l-3.539 3.539L32.686 12.979z"></path>
+    </svg> */}
+    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 72 72">
+<path d="M38.406 22.234l11.36 11.36L28.784 54.576l-12.876 4.307c-1.725.577-3.367-1.065-2.791-2.79l4.307-12.876L38.406 22.234zM41.234 19.406l5.234-5.234c1.562-1.562 4.095-1.562 5.657 0l5.703 5.703c1.562 1.562 1.562 4.095 0 5.657l-5.234 5.234L41.234 19.406z"></path>
+</svg>
+  </>
 );
 
 export const CheckCircleIcon = () => (

@@ -3,6 +3,7 @@ import RandomProbModal from "./RandomProbModal"
 import ShortcutModal from "./ShortcutModal"
 import DeleteModal from "./DeleteModal"
 import UpdateStatusModal from "./UpdateStatusModal"
+import EditProblemModal from "./EditProblemModal"
 
 function AllModals({ theme, problemsState, formDataState, modalControls, editState, handlePracticeRandom }) {
   return (
@@ -16,6 +17,8 @@ function AllModals({ theme, problemsState, formDataState, modalControls, editSta
       <DeleteModal theme={theme} problemsState={problemsState} modalControls={modalControls}  editState={editState}/>
 
       <UpdateStatusModal theme={theme} problemsState={problemsState} modalControls={modalControls} editState={editState} />
+
+      <EditProblemModal theme={theme} problemsState={problemsState} modalControls={modalControls} formDataState={formDataState} editState={editState}/>
     </>
   )
 }

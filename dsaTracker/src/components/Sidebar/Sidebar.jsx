@@ -8,9 +8,9 @@ function Sidebar({ sidebar, theme, modalControls }) {
   const sidebarRef = useRef(null)
 
   return (
-    <aside ref={sidebarRef} className={`${sidebarOpen ? 'w-64' : 'w-0'} ${secondaryBg} border-r ${borderClass} transition-all duration-300 overflow-hidden`}>
-      <nav className="p-6 space-y-6 h-full flex flex-col">
-        <div>
+    <aside ref={sidebarRef} className={`${sidebarOpen ? 'w-64 translate-x-0' : 'w-0 -translate-x-full'} ${secondaryBg} border-r ${borderClass} transition-all duration-300 overflow-hidden fixed left-0 top-0 h-screen z-30`}>
+      <nav className="p-6 h-full flex flex-col overflow-y-auto justify-between">
+        <div className='mt-20'>
           <p className="text-xs font-semibold text-cyan-400 uppercase tracking-wider mb-3">Navigation</p>
           <ul className="space-y-2">
             <li>
@@ -38,8 +38,9 @@ function Sidebar({ sidebar, theme, modalControls }) {
             </li>
           </ul>
         </div>
-        <div className="mt-auto pt-6 border-t border-slate-700 items-end">
-          <div className="flex items-center gap-3">
+
+        <div className={` border-slate-700 flex items-center border-none rounded-lg ${hoverBg} transition-colors cursor-pointer`}>
+          <div className="flex items-center gap-3 p-2">
             <div className="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-400 to-cyan-600 flex items-center justify-center text-white font-bold">C</div>
             <div className="text-sm">
               <p className="font-semibold">CHECHI10</p>
