@@ -31,6 +31,25 @@ export const CloseIcon = () => (
   </svg>
 );
 
+export const RefreshIcon = () => (
+  <>
+    {/* <a target="_blank" href="https://icons8.com/icon/Ei5AhpGybn1O/synchronize">Refresh Icon</a> {/* icon by <a target="_blank" 
+  href="https://icons8.com">Icons8</a> */}
+    {/* <img width="24" height="24" src="https://img.icons8.com/sf-black/64/recurring-appointment.png" alt="recurring-appointment"/> */}
+
+    {/* <img width="24" height="24" src="https://img.icons8.com/sf-black/64/recurring-appointment.png" alt="recurring-appointment"/> */}
+    {/* <img width="64" height="64" src="https://img.icons8.com/sf-black/64/recurring-appointment.png" alt="recurring-appointment"/> */}
+    {/* <CIcon icon={cisReload} /> */}
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="false" role="img">
+      <desc>Clockwise refresh icon</desc>
+      <path d="M21 12a9 9 0 1 1-3.0-6.0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <polyline points="21 3 21 9 15 9" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+
+  </>
+);
+
 export const TrashIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <polyline points="3 6 5 6 21 6"></polyline>

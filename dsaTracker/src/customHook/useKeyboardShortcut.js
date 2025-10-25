@@ -22,7 +22,7 @@ function useKeyboardShortcut({ modalControls, problemsState, theme, sidebar, han
         return;
       }
 
-      if (isModalOpen) return;  // Don't allow other shortcuts if modal is open
+      // if (isModalOpen) return;  // Don't allow other shortcuts if modal is open
 
       // Alt + N: Add Problem
       if (e.altKey && e.key === 'n') {

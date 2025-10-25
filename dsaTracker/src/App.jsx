@@ -17,10 +17,11 @@ export default function App() {
   const [isDark, setIsDark] = useState(true)
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [problems, setProblems] = useState(InitialProblems)
+  const [formData, setFormData] = useState({ title: '', platform: 'LeetCode', status: 'Unsolved', difficulty: 'Medium', link: '' })
 
   // modal states
-  const [randomProblem, setRandomProblem] = useState(null)
-  const [problemToDelete, setProblemToDelete] = useState(null);
+  const [randomProblem, setRandomProblem] = useState(null) // for random practice modal
+  const [problemToDelete, setProblemToDelete] = useState(null); // single delete state
   const [updateStatusProblem, setUpdateStatusProblem] = useState(null); // New state for status dropdown
 
   const MODALS = {
@@ -37,8 +38,6 @@ export default function App() {
 
   const [activeModal, setActiveModal] = useState(MODALS.NONE);
   
-  const [formData, setFormData] = useState({ title: '', platform: 'LeetCode', status: 'Unsolved', difficulty: 'Medium', link: '' })
-
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) setSidebarOpen(true)
@@ -55,8 +54,6 @@ export default function App() {
   const secondaryBg = isDark ? 'bg-slate-800' : 'bg-white'
   const borderClass = isDark ? 'border-slate-700' : 'border-gray-200'
   const hoverBg = isDark ? 'hover:bg-slate-700' : 'hover:bg-gray-100'
-
-
 
   return (
     <div className={`${bgClass} ${textClass} min-h-screen font-sans transition-colors duration-300`}>

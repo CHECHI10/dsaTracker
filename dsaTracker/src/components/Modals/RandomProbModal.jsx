@@ -1,8 +1,8 @@
-import { StatusIcon } from "../Utils/Icons"
+import { StatusIcon, RefreshIcon } from "../Utils/Icons"
 import { DifficultyBadge } from "../Utils/DifficultyBadge";
 import { Modal } from "../Utils/Modal";
 
-function RandomProbModal({ theme, problemsState, modalControls }) {
+function RandomProbModal({ theme, problemsState, modalControls, handlePracticeRandom }) {
   const { MODALS, activeModal, setActiveModal } = modalControls;
   const { isDark } = theme;
   const { randomProblem } = problemsState;
@@ -37,6 +37,7 @@ function RandomProbModal({ theme, problemsState, modalControls }) {
         </div>
       </Modal>
 
+      {/* Random Problem Modal */}
       <Modal
         isOpen={activeModal === MODALS.RANDOM_PROBLEM}
         title="Random Problem" isDark={isDark}
@@ -66,13 +67,25 @@ function RandomProbModal({ theme, problemsState, modalControls }) {
                 {randomProblem.status}
               </p>
             </div>
-            <button onClick={() => setActiveModal(MODALS.NONE)} className="w-3/4 mt-6 mr-2 px-4 py-2 bg-gradient-to-r from-cyan-400 to-cyan-700 text-white rounded-lg font-semibold hover:opacity-90 transition-opacity">
-              {randomProblem.link ? <a href={randomProblem.link} target="_blank">Start Practicing</a> : 'No Link Available'}
-            </button>
-
-            <button className="w-auto mt-6 px-4 py-2 rounded-lg  bg-slate-700 text-white hover:bg-slate-600 transition-colors" /* onClick={() => setActiveModal(MODALS.RANDOM_PROBLEM)} */>
-              Reload
-            </button>
+            <div className="flex items-center">
+              <button onClick={() => setActiveModal(MODALS.NONE)} className={`w-3/4 mr-2 px-4 py-2 bg-gradient-to-r from-cyan-400 to-cyan-700 text-white rounded-lg font-semibold hover:opacity-90 transition-opacity ${randomProblem.link ? '' : 'cursor-not-allowed'}`}>
+                {randomProblem.link ?
+                  <a
+                    href={randomProblem.link} target="_blank" rel="noreferrer"
+                  >
+                    Start Practicing
+                  </a> : ('No Link Available') }
+                  
+              </button>
+              <div className="w-1/4 flex justify-center">
+                <button
+                onClick={() => handlePracticeRandom()}
+                className="p-2 rounded-lg bg-slate-700 text-white/90 hover:bg-slate-600 hover:text-white transition-colors items-center duration-200 flex justify-center w-full"
+              >
+                <RefreshIcon />
+                </button>
+              </div>
+            </div>
           </div>
         )}
       </Modal>

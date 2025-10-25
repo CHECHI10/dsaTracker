@@ -23,7 +23,7 @@ function MainContent({ modalControls, problemsState, editState, theme, formDataS
 
   return (
     <>
-      <AllModals editState={editState} theme={theme} modalControls={modalControls} problemsState={problemsState} formDataState={formDataState}/>
+      <AllModals editState={editState} theme={theme} modalControls={modalControls} problemsState={problemsState} formDataState={formDataState} handlePracticeRandom={handlePracticeRandom}/>
 
       <main className="flex-1 p-6 lg:p-8">
         <div className="max-w-7xl mx-auto space-y-6">
