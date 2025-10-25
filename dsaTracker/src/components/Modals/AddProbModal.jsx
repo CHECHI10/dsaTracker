@@ -59,7 +59,7 @@ function AddProbModal({ theme, problemsState, formDataState, modalControls }) {
           <label className={`block text-sm font-medium mb-2 mt-4 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>Problem Link</label>
           <input type="url" placeholder="paste link here" value={formData.link} onChange={(e) => setFormData({ ...formData, link: e.target.value })} className={`w-full px-4 py-2 rounded-lg border ${isDark ? 'bg-slate-700 border-slate-600 text-white' : 'bg-gray-100 border-gray-300 text-gray-900'} focus:outline-none focus:ring-2 focus:ring-cyan-500`} />
         </div>
-        <button onClick={handleAddProblem} className="w-full mt-6 px-4 py-2 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white rounded-lg font-semibold hover:opacity-90 transition-opacity">Add Problem</button>
+        <button onClick={() => handleAddProblem()} className="w-full mt-6 px-4 py-2 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white rounded-lg font-semibold hover:opacity-90 transition-opacity">Add Problem</button>
       </div>
     </Modal>
 
