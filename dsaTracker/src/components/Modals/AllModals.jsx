@@ -5,20 +5,21 @@ import DeleteModal from "./DeleteModal"
 import UpdateStatusModal from "./UpdateStatusModal"
 import EditProblemModal from "./EditProblemModal"
 
-function AllModals({ theme, problemsState, formDataState, modalControls, editState, handlePracticeRandom }) {
+function AllModals() {
+  
   return (
     <>
-      <AddProbModal theme={theme} problemsState={problemsState} formDataState={formDataState} modalControls={modalControls} />
+      <AddProbModal />
 
-      <RandomProbModal theme={theme} problemsState={problemsState} modalControls={modalControls} handlePracticeRandom={handlePracticeRandom} />
+      <RandomProbModal />
 
-      <ShortcutModal theme={theme} modalControls={modalControls} />
+      <ShortcutModal />
       
-      <DeleteModal theme={theme} problemsState={problemsState} modalControls={modalControls}  editState={editState}/>
+      <DeleteModal />
 
-      <UpdateStatusModal theme={theme} problemsState={problemsState} modalControls={modalControls} editState={editState} />
+      <UpdateStatusModal />
 
-      <EditProblemModal theme={theme} problemsState={problemsState} modalControls={modalControls} formDataState={formDataState} editState={editState}/>
+      <EditProblemModal />
     </>
   )
 }

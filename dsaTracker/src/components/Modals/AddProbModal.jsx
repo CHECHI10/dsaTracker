@@ -1,30 +1,9 @@
+import useApp from "../../customHook/useApp"
 import { Modal } from "../Utils/Modal"
 
-function AddProbModal({ theme, problemsState, formDataState, modalControls }) {
+function AddProbModal() {
 
-  const { isDark } = theme;
-  const { problems, setProblems } = problemsState;
-  const { formData, setFormData } = formDataState;
-  const { MODALS, activeModal, setActiveModal } = modalControls;
-
-  const handleAddProblem = () => {
-    if (formData.title.trim()) {
-      const newProblem = {
-        id: Math.max(...problems.map((p) => p.id), 0) + 1,
-        title: formData.title,
-        platform: formData.platform,
-        status: formData.status,
-        difficulty: formData.difficulty,
-        lastUpdate: 'Just now',
-        link: formData.link || '',
-        lastUpdateTime: new Date()
-      }
-
-      setProblems([newProblem, ...problems])
-      setActiveModal(MODALS.NONE)
-      setFormData({ title: '', platform: 'LeetCode', status: 'Unsolved', difficulty: 'Medium', link: '' })
-    }
-  }
+  const { isDark, activeModal, setActiveModal, MODALS, formData, setFormData, handleAddProblem } = useApp();
 
   return (
     <Modal isOpen={activeModal === MODALS.ADD_PROBLEM} title="Add New Problem" isDark={isDark} onClose={() => setActiveModal(MODALS.NONE)}>

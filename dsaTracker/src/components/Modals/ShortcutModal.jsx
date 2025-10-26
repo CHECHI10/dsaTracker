@@ -1,8 +1,9 @@
+import useApp from '../../customHook/useApp'
 import { Modal } from '../Utils/Modal'
 
-function ShortcutModal({ modalControls, theme}) {
-  const { MODALS, activeModal, setActiveModal } = modalControls;
-  const { isDark } = theme;
+function ShortcutModal() {
+
+  const { isDark, activeModal, setActiveModal, MODALS} = useApp()
   return (
     <>
       {/* Keyboard Shortcuts Help Modal */}

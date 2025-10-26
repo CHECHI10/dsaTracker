@@ -1,9 +1,13 @@
+import useApp from '../../customHook/useApp.js';
 import { SunIcon, MoonIcon, HamburgerIcon, CloseIcon } from '../Utils/Icons.jsx';
 
-function Header({ theme, sidebar }) {
+function Header() {
 
-  const { isDark, hoverBg, setIsDark, secondaryBg, borderClass } = theme;
-  const { sidebarOpen, setSidebarOpen } = sidebar;
+  const { isDark, setIsDark, sidebarOpen, setSidebarOpen, secondaryBg, borderClass, hoverBg } = useApp();
+
+  /* const secondaryBg = isDark ? 'bg-slate-800' : 'bg-white'
+  const borderClass = isDark ? 'border-slate-700' : 'border-gray-200'
+  const hoverBg = isDark ? 'hover:bg-slate-700' : 'hover:bg-gray-100' */
 
   return (
     <header className={`${secondaryBg} border-b ${borderClass} sticky top-0 z-40 transition-colors duration-300`}>

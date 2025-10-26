@@ -1,13 +1,10 @@
+import useApp from "../../customHook/useApp"
 
-function Actionbar({ problemsState, modalControls, theme, handlePracticeRandom }) {
-  const { problems } = problemsState;
-  const { MODALS, setActiveModal } = modalControls;
-  const { isDark, borderClass } = theme;
+function Actionbar() {
+  
+  const { isDark, setActiveModal, MODALS, handlePracticeRandom, deleteAllProblems, problems } = useApp();  
 
-  const deleteAllProblems = () => {
-    // Open a confirmation modal instead of deleting immediately
-    setActiveModal(MODALS.DELETE_ALL);
-  }
+  const borderClass = isDark ? 'border-slate-700' : 'border-gray-200';
 
   return (
     <>
@@ -38,7 +35,7 @@ function Actionbar({ problemsState, modalControls, theme, handlePracticeRandom }
             </button>
 
             <button
-              onClick={deleteAllProblems}
+              onClick={() => deleteAllProblems()}
               disabled={problems.length === 0}
               className={`px-6 py-2.5 text-base font-semibold text-white rounded-lg transition-opacity shadow-md ${problems.length === 0
                 ? 'bg-red-300 cursor-not-allowed'

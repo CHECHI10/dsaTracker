@@ -1,48 +1,12 @@
 import { EditIcon, StatusIcon, TrashIcon } from "../Utils/Icons.jsx"
 import { DifficultyBadge } from "../Utils/DifficultyBadge.jsx";
 import ProblemRow from "./ProblemRow.jsx";
+import useApp from "../../customHook/useApp.js";
 
-function ProblemTable({ editState, theme, modalControls, problemsState, formDataState }) {
+function ProblemTable() {
+  const { isDark, problems, setUpdateStatusProblem, setActiveModal, MODALS, formatTimeAgo, handleDeleteProblem, handleOpenEdit } = useApp();
 
-  const { setProblemToDelete, setUpdateStatusProblem, setProblemToEdit } = editState;
-  const { isDark, hoverBg } = theme;
-  const { MODALS, setActiveModal } = modalControls;
-  const { problems } = problemsState;
-  const { setFormData } = formDataState;
-
-  const handleDeleteProblem = (problem) => {
-    setProblemToDelete(problem);
-    setActiveModal(MODALS.DELETE_SINGLE);
-  };
-
-  const handleOpenEdit = (problem) => {
-    setProblemToEdit(problem);
-    setFormData({
-      title: problem.title,
-      platform: problem.platform,
-      status: problem.status,
-      difficulty: problem.difficulty,
-      link: problem.link
-    });
-    setActiveModal(MODALS.EDIT_PROBLEM);
-  }
-
-  
-
-  const formatTimeAgo = (date) => {
-    const now = new Date();
-    const seconds = Math.floor((now - date) / 1000);
-    const minutes = Math.floor(seconds / 60);
-    const hours = Math.floor(minutes / 60);
-    const days = Math.floor(hours / 24);
-    const months = Math.floor(days / 30);
-
-    if (minutes < 1) return 'Just now';
-    if (hours < 1) return `${minutes} minutes${minutes === 1 ? '' : 's'} ago`;
-    if (days < 1) return `${hours} hour${hours === 1 ? '' : 's'} ago`;
-    if (months < 1) return `${days} day${days === 1 ? '' : 's'} ago`;
-    return `${months} month${months === 1 ? '' : 's'} ago`;
-  }
+  const hoverBg = isDark ? 'hover:bg-slate-700' : 'hover:bg-gray-100'
 
   return (
     <>
@@ -111,7 +75,7 @@ function ProblemTable({ editState, theme, modalControls, problemsState, formData
         </div>
       </div>
 
-      
+
     </>
   )
 }

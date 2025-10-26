@@ -1,24 +1,9 @@
+import useApp from "../../customHook/useApp";
 import { Modal } from "../Utils/Modal";
 
-function DeleteModal({ modalControls, editState, problemsState, theme }) {
+function DeleteModal() {
 
-  const { MODALS, activeModal, setActiveModal } = modalControls;
-  const { problemToDelete } = editState;
-  const { problems, setProblems } = problemsState;
-  const { isDark } = theme;
-
-  const handleConfirmDelete = () => {
-    if (problemToDelete) {
-      setProblems(problems.filter(p => p.id !== problemToDelete.id));
-      setActiveModal(MODALS.NONE);
-    }
-  };
-
-  const handleConfirmDeleteAll = () => {
-    setProblems([]);
-    setActiveModal(MODALS.NONE);
-
-  }
+  const { isDark, activeModal, setActiveModal, MODALS, problemToDelete, handleConfirmDelete, handleConfirmDeleteAll } = useApp();
 
   return (
     <>

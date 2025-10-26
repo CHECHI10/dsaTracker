@@ -1,29 +1,9 @@
 import { Modal } from "../Utils/Modal"
+import useApp from "../../customHook/useApp";
 
-function EditProblemModal({ theme, problemsState, formDataState, modalControls, editState }) {
-  const { isDark } = theme;
-  const { problems, setProblems } = problemsState;
-  const { formData, setFormData } = formDataState;
-  const { MODALS, activeModal, setActiveModal } = modalControls;
-  const { problemToEdit } = editState;
+function EditProblemModal() {
 
-  const handleConfirmEdit = () => {
-    if (problemToEdit && formData.title.trim()) {
-      setProblems(problems.map(p => p.id === problemToEdit.id ? {
-        ...p,
-        title: formData.title,
-        platform: formData.platform,
-        difficulty: formData.difficulty,
-        status: formData.status,
-        link: formData.link,
-        lastUpdateTime: formData.status !== p.status ? new Date() : p.lastUpdateTime // only change lastUpdateTime if PROBLEM STATUS is changed
-      }
-        : p
-      ));
-    }
-    setFormData({ title: '', platform: 'LeetCode', status: 'Unsolved', difficulty: 'Medium', link: '' });
-    setActiveModal(MODALS.NONE);
-  };
+  const { isDark, activeModal, setActiveModal, MODALS, formData, setFormData, handleConfirmEdit } = useApp();
 
   return (
     <>

@@ -1,11 +1,11 @@
 import { StatusIcon, RefreshIcon } from "../Utils/Icons"
 import { DifficultyBadge } from "../Utils/DifficultyBadge";
 import { Modal } from "../Utils/Modal";
+import useApp from "../../customHook/useApp";
 
-function RandomProbModal({ theme, problemsState, modalControls, handlePracticeRandom }) {
-  const { MODALS, activeModal, setActiveModal } = modalControls;
-  const { isDark } = theme;
-  const { randomProblem } = problemsState;
+function RandomProbModal() {
+
+  const { isDark, activeModal, setActiveModal, MODALS, randomProblem, handlePracticeRandom } = useApp();
 
   return (
     <>
@@ -74,15 +74,15 @@ function RandomProbModal({ theme, problemsState, modalControls, handlePracticeRa
                     href={randomProblem.link} target="_blank" rel="noreferrer"
                   >
                     Start Practicing
-                  </a> : ('No Link Available') }
-                  
+                  </a> : ('No Link Available')}
+
               </button>
               <div className="w-1/4 flex justify-center">
                 <button
-                onClick={() => handlePracticeRandom()}
-                className="p-2 rounded-lg bg-slate-700 text-white/90 hover:bg-slate-600 hover:text-white transition-colors items-center duration-200 flex justify-center w-full"
-              >
-                <RefreshIcon />
+                  onClick={() => handlePracticeRandom()}
+                  className="p-2 rounded-lg bg-slate-700 text-white/90 hover:bg-slate-600 hover:text-white transition-colors items-center duration-200 flex justify-center w-full"
+                >
+                  <RefreshIcon />
                 </button>
               </div>
             </div>

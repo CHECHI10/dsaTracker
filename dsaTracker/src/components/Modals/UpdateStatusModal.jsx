@@ -1,21 +1,10 @@
 import { Modal } from "../Utils/Modal";
 import { StatusIcon } from "../Utils/Icons";
+import useApp from "../../customHook/useApp";
 
-function UpdateStatusModal({modalControls, problemsState, editState, theme}) {
-  const { MODALS, activeModal, setActiveModal } = modalControls;
-  const { isDark } = theme;
-  const { updateStatusProblem } = editState;
-  const { problems, setProblems } = problemsState;
+function UpdateStatusModal() {
 
-  const handleUpdateStatus = (newStatus) => {
-    if (updateStatusProblem) {
-      setProblems(problems.map(p =>
-        p.id === updateStatusProblem.id ? { ...p, status: newStatus } : p
-      ))
-    }
-
-    setActiveModal(MODALS.NONE);
-  };
+  const { isDark, activeModal, setActiveModal, MODALS, updateStatusProblem, handleUpdateStatus } = useApp();
 
   return (
     <>
