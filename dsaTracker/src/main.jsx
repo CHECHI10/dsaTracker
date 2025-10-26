@@ -7,7 +7,7 @@ import './index.css'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AppContextProvider>
-      <App />
+      <App /> {/* testing github branch feature --> TEST BRANCH */}
     </AppContextProvider>
   </StrictMode>,
 )
