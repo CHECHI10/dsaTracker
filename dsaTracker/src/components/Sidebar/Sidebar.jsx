@@ -1,13 +1,11 @@
-import { useRef } from 'react'
 import useApp from '../../customHook/useApp'
 
 function Sidebar() {
-  const sidebarRef = useRef(null)
 
   const { isDark, secondaryBg, borderClass, hoverBg, sidebarOpen, setActiveModal, MODALS } = useApp(); 
 
   return (
-    <aside ref={sidebarRef} className={`${sidebarOpen ? 'w-64 translate-x-0' : 'w-0 -translate-x-full'} ${secondaryBg} border-r ${borderClass} transition-all duration-300 overflow-hidden fixed left-0 top-0 h-screen z-30 `}>
+    <aside className={`${sidebarOpen ? 'w-64 translate-x-0' : 'w-0 -translate-x-full'} ${secondaryBg} border-r ${borderClass} transition-all duration-300 overflow-hidden fixed left-0 top-0 h-screen z-30 `}>
       <nav className="p-6 h-full flex flex-col justify-between">
         <div className='mt-20'>
           <p className="text-xs font-semibold text-cyan-400 uppercase tracking-wider mb-3">Navigation</p>

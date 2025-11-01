@@ -1,4 +1,5 @@
 import useApp from "../../customHook/useApp"
+import SortDropdown from "../Utils/SortDropdown";
 
 function Actionbar() {
   
@@ -44,6 +45,8 @@ function Actionbar() {
             >
               Delete All
             </button>
+
+            <SortDropdown />
           </div>
         </div>
       </div>

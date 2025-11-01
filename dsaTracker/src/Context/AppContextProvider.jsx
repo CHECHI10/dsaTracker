@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import AppContext from './AppContext';
 import MODALS from '../constants/modals';
 
-const InitialProblems = [
+const InitialProblems = [  
   { id: 1, title: 'Two Sum', platform: 'LeetCode', status: 'Solved', difficulty: 'Easy', lastUpdate: '2 days ago', link: 'hsh' },
   { id: 2, title: 'Binary Tree Level Order Traversal', platform: 'LeetCode', status: 'Attempted', difficulty: 'Medium', lastUpdate: '1 week ago', link: 'hsh' },
   { id: 3, title: 'Longest Increasing Subsequence', platform: 'CodeForces', status: 'Unsolved', difficulty: 'Hard', lastUpdate: '3 weeks ago', link: 'hsh' },
@@ -14,7 +14,7 @@ const InitialProblems = [
   { id: 9, title: 'Valid Parentheses', platform: 'LeetCode', status: 'Solved', difficulty: 'Easy', lastUpdate: '1 month ago', link: 'hsh' },
   { id: 10, title: 'Valid Parentheses', platform: 'LeetCode', status: 'Solved', difficulty: 'Easy', lastUpdate: '1 month ago', link: 'hsh' },
   /* { id: 11, title: 'Valid Parentheses', platform: 'LeetCode', status: 'Solved', difficulty: 'Easy', lastUpdate: '1 month ago', link: 'hsh' },
-  { id: 12, title: 'Valid Parentheses', platform: 'LeetCode', status: 'Solved', difficulty: 'Easy', lastUpdate: '1 month ago', link: 'hsh' },
+  { id: 12, title: 'Valid Parentheses', platform: 'LeetCode', status: 'Solved', difficulty: 'Easy', lastUpdate: '1 month ago', link: 'hsh' },               
   { id: 13, title: 'Valid Parentheses', platform: 'LeetCode', status: 'Solved', difficulty: 'Easy', lastUpdate: '1 month ago', link: 'hsh' },
   { id: 14, title: 'Valid Parentheses', platform: 'LeetCode', status: 'Solved', difficulty: 'Easy', lastUpdate: '1 month ago', link: 'hsh' },
   { id: 15, title: 'Valid Parentheses', platform: 'LeetCode', status: 'Solved', difficulty: 'Easy', lastUpdate: '1 month ago', link: 'hsh' } */
@@ -27,7 +27,7 @@ const AppContextProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(true)
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [problems, setProblems] = useState(InitialProblems)
-  const [formData, setFormData] = useState({ title: '', platform: 'LeetCode', status: 'Unsolved', difficulty: 'Medium', link: '', lastUpdateTime: new Date() })
+  const [formData, setFormData] = useState({ title: '', platform: 'LeetCode', status: 'Unsolved', difficulty: 'Medium', link: '', /* lastUpdateTime: new Date() */ lastUpdate: new Date() })
 
   // modal states
   const [activeModal, setActiveModal] = useState(MODALS.NONE);
@@ -40,9 +40,53 @@ const AppContextProvider = ({ children }) => {
   // theme switchers
   const bgClass = isDark ? 'bg-slate-900' : 'bg-gray-50'
   const textClass = isDark ? 'text-white' : 'text-gray-900'
-  const secondaryBg = isDark ? 'bg-slate-800' : 'bg-white'
+  const secondaryBg = isDark ? 'bg-slate-800' : 'bg-white'          
   const borderClass = isDark ? 'border-slate-700' : 'border-gray-200'
   const hoverBg = isDark ? 'hover:bg-slate-700' : 'hover:bg-gray-100'
+
+  // Sort state
+  const [sortBy, setSortBy] = useState('lastUpdate'); // Default sort
+  const [sortOrder, setSortOrder] = useState('desc'); // 'asc' or 'desc'      
+
+  // Sort problems function
+  const getSortedProblems = () => {
+    const sorted = [...problems].sort((a, b) => {
+      switch (sortBy) {
+        case 'status': {
+          const statusOrder = { 'Solved': 1, 'Attempted': 2, 'Unsolved': 3 };
+          return sortOrder === 'asc'
+            ? statusOrder[a.status] - statusOrder[b.status]
+            : statusOrder[b.status] - statusOrder[a.status];
+        }
+
+        case 'difficulty': {
+          const diffOrder = { 'Easy': 1, 'Medium': 2, 'Hard': 3 };
+          return sortOrder === 'asc'
+            ? diffOrder[a.difficulty] - diffOrder[b.difficulty]
+            : diffOrder[b.difficulty] - diffOrder[a.difficulty];
+        }
+
+        case 'lastUpdate':
+          return sortOrder === 'asc'
+            ? new Date(a.lastUpdate) - new Date(b.lastUpdate)
+            : new Date(b.lastUpdate) - new Date(a.lastUpdate);
+
+        case 'title':
+          return sortOrder === 'asc'
+            ? a.title.localeCompare(b.title)
+            : b.title.localeCompare(a.title);
+
+        case 'platform':
+          return sortOrder === 'asc'
+            ? a.platform.localeCompare(b.platform)
+            : b.platform.localeCompare(a.platform);
+
+        default:
+          return 0;
+      }
+    });
+    return sorted;
+  };
 
   // function to handle last update time 
   const formatTimeAgo = (date) => {
@@ -83,9 +127,9 @@ const AppContextProvider = ({ children }) => {
         platform: formData.platform,
         status: formData.status,
         difficulty: formData.difficulty,
-        lastUpdate: 'Just now',
+        // lastUpdateTime: new Date(),
+        lastUpdate: new Date(),
         link: formData.link || '',
-        lastUpdateTime: new Date()
       }
 
       setProblems([newProblem, ...problems])
@@ -128,7 +172,8 @@ const AppContextProvider = ({ children }) => {
         difficulty: formData.difficulty,
         status: formData.status,
         link: formData.link,
-        lastUpdateTime: formData.status !== p.status ? new Date() : p.lastUpdate // only change lastUpdateTime if PROBLEM STATUS is changed
+        // lastUpdateTime: formData.status !== p.status ? new Date() : p.lastUpdate // only change lastUpdateTime if PROBLEM STATUS is changed
+        lastUpdate: formData.status !== p.status ? new Date() : p.lastUpdate // only change lastUpdateTime if PROBLEM STATUS is changed
       }
         : p
       ));
@@ -179,6 +224,9 @@ const AppContextProvider = ({ children }) => {
     // theme
     isDark, setIsDark, secondaryBg,
 
+    // sorting
+    sortBy, setSortBy, sortOrder, setSortOrder, getSortedProblems,
+
     // sidebar
     sidebarOpen, setSidebarOpen,
 
@@ -202,7 +250,7 @@ const AppContextProvider = ({ children }) => {
 
     // functions
     handleAddProblem, handlePracticeRandom,
-    handleOpenEdit , handleConfirmEdit, 
+    handleOpenEdit, handleConfirmEdit,
     handleUpdateStatus, formatTimeAgo,
     handleConfirmDelete, handleDeleteProblem, deleteAllProblems, handleConfirmDeleteAll,
   };
