@@ -1,15 +1,8 @@
-// import { EditIcon, StatusIcon, TrashIcon } from "../Utils/Icons.jsx"
-// import { DifficultyBadge } from "../Utils/DifficultyBadge.jsx";
 import ProblemRow from "./ProblemRow.jsx";
 import useApp from "../../customHook/useApp.js";
 
 function ProblemTable() {
-  const { isDark, getSortedProblems } = useApp();
-  // const { isDark, problems, setUpdateStatusProblem, setActiveModal, MODALS, formatTimeAgo, handleDeleteProblem, handleOpenEdit, hoverBg, /* getSortedProblems */ } = useApp();
-
-  const sortedProblems = getSortedProblems();
-
-  // const hoverBg = isDark ? 'hover:bg-slate-700' : 'hover:bg-gray-100'
+  const { isDark, currentProblems } = useApp();
 
   return (
     <>
@@ -29,19 +22,14 @@ function ProblemTable() {
             </thead>
             <tbody className="divide-y divide-slate-700">
 
-              {sortedProblems.map((problem) => (
+              {currentProblems.map((problem) => (
                 <ProblemRow key={problem.id} problem={problem} />
               ))}
-
-              {/* {problems.map((problem, idx) => (
-                <ProblemRow problem={problem} idx={idx} key={problem.id}/>
-              ))} */}
+              
             </tbody>
           </table>
         </div>
       </div>
-
-
     </>
   )
 }

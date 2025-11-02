@@ -2,6 +2,7 @@ import ProblemTable from "./ProblemTable.jsx";
 import Actionbar from "./Actionbar.jsx";
 import AllModals from "../Modals/AllModals.jsx";
 import useApp from "../../customHook/useApp.js";
+import Pagination from "../Pagination/Pagination";
 
 function MainContent() {
   const { sidebarOpen } = useApp();
@@ -16,6 +17,8 @@ function MainContent() {
           <Actionbar />
           <ProblemTable />
 
+          <Pagination />
+          
         </div>
       </main>
     </>
