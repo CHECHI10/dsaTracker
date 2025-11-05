@@ -21,10 +21,6 @@ function Pagination() {
     if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
   };
 
-  console.log(totalPages);
-  console.log(totalProblems);
-  console.log(probPerPage);
-
   // it will decide which pages to show
   const getVisiblePages = () => {
     const pages = [];
