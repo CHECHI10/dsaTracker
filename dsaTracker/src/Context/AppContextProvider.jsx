@@ -3,21 +3,19 @@ import AppContext from './AppContext';
 import MODALS from '../constants/modals';
 
 const InitialProblems = [  
-  { id: 1, title: 'Two Sum', platform: 'LeetCode', status: 'Solved', difficulty: 'Easy', lastUpdate: '2 days ago', link: 'hsh' },
-  { id: 2, title: 'Binary Tree Level Order Traversal', platform: 'LeetCode', status: 'Attempted', difficulty: 'Medium', lastUpdate: '1 week ago', link: 'hsh' },
-  { id: 3, title: 'Longest Increasing Subsequence', platform: 'CodeForces', status: 'Unsolved', difficulty: 'Hard', lastUpdate: '3 weeks ago', link: 'hsh' },
-  { id: 4, title: 'Valid Parentheses 4', platform: 'LeetCode', status: 'Solved', difficulty: 'Easy', lastUpdate: '1 month ago', link: 'hsh' },
-  { id: 5, title: 'Valid Parentheses 5', platform: 'LeetCode', status: 'Solved', difficulty: 'Easy', lastUpdate: '1 month ago', link: 'hsh' },
-  { id: 6, title: 'Valid Parentheses 6', platform: 'LeetCode', status: 'Solved', difficulty: 'Easy', lastUpdate: '1 month ago', link: 'hsh' },
-  { id: 7, title: 'Valid Parentheses 7', platform: 'LeetCode', status: 'Solved', difficulty: 'Easy', lastUpdate: '1 month ago', link: 'hsh' },
-  { id: 8, title: 'Valid Parentheses 8', platform: 'LeetCode', status: 'Solved', difficulty: 'Easy', lastUpdate: '1 month ago', link: 'hsh' },
-  { id: 9, title: 'Valid Parentheses 9', platform: 'LeetCode', status: 'Solved', difficulty: 'Easy', lastUpdate: '1 month ago', link: 'hsh' },
-  { id: 10, title: 'Valid Parentheses 10', platform: 'LeetCode', status: 'Solved', difficulty: 'Easy', lastUpdate: '1 month ago', link: 'hsh' },
-  { id: 11, title: 'Valid Parentheses 11', platform: 'LeetCode', status: 'Solved', difficulty: 'Easy', lastUpdate: '1 month ago', link: 'hsh' },
-  { id: 12, title: 'Valid Parentheses 12', platform: 'LeetCode', status: 'Solved', difficulty: 'Easy', lastUpdate: '1 month ago', link: 'hsh' },               
-  { id: 13, title: 'Valid Parentheses 13', platform: 'LeetCode', status: 'Solved', difficulty: 'Easy', lastUpdate: '1 month ago', link: 'hsh' },
-  { id: 14, title: 'Valid Parentheses 14', platform: 'LeetCode', status: 'Solved', difficulty: 'Easy', lastUpdate: '1 month ago', link: 'hsh' },
-  { id: 15, title: 'Valid Parentheses 15', platform: 'LeetCode', status: 'Solved', difficulty: 'Easy', lastUpdate: '1 month ago', link: 'hsh' }
+  { id: 1, title: 'Two Sum', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: '', link: 'hsh' },
+  { id: 2, title: 'Binary Tree Level Order Traversal', platform: 'LeetCode', status: 'attempted', difficulty: 'medium', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
+  { id: 3, title: 'Longest Increasing Subsequence', platform: 'CodeForces', status: 'unsolved', difficulty: 'hard', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
+  { id: 4, title: 'Valid Parentheses 4', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
+  { id: 5, title: 'Valid Parentheses 5', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
+  { id: 6, title: 'Valid Parentheses 6', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
+  { id: 7, title: 'Valid Parentheses 7', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
+  { id: 8, title: 'Valid Parentheses 8', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
+  { id: 9, title: 'Valid Parentheses 9', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
+  { id: 10, title: 'Valid Parentheses 10', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
+  { id: 11, title: 'Valid Parentheses 11', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
+  { id: 12, title: 'Valid Parentheses 12', platform: 'LeetCode', status:'solved' , difficulty:'easy' , lastUpdate : Date.now() - (3*24*6*6*1e3) , link : "hsh"},
+   
 ];
 
 // provider component
@@ -27,7 +25,7 @@ const AppContextProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(true)
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [problems, setProblems] = useState(InitialProblems)
-  const [formData, setFormData] = useState({ title: '', platform: 'LeetCode', status: 'Unsolved', difficulty: 'Medium', link: '', /* lastUpdateTime: new Date() */ lastUpdate: new Date() })
+  const [formData, setFormData] = useState({ title: '', platform: 'LeetCode', status: 'unsolved', difficulty: 'medium', link: '', /* lastUpdateTime: new Date() */ lastUpdate: new Date() })
 
   // modal states
   const [activeModal, setActiveModal] = useState(MODALS.NONE);
@@ -52,14 +50,14 @@ const AppContextProvider = ({ children }) => {
     const sorted = [...problems].sort((a, b) => {
       switch (sortBy) {
         case 'status': {
-          const statusOrder = { 'Solved': 1, 'Attempted': 2, 'Unsolved': 3 };
+          const statusOrder = { 'solved': 1, 'attempted': 2, 'unsolved': 3 };
           return sortOrder === 'asc'
             ? statusOrder[a.status] - statusOrder[b.status]
             : statusOrder[b.status] - statusOrder[a.status];
         }
 
         case 'difficulty': {
-          const diffOrder = { 'Easy': 1, 'Medium': 2, 'Hard': 3 };
+          const diffOrder = { 'easy': 1, 'medium': 2, 'hard': 3 };
           return sortOrder === 'asc'
             ? diffOrder[a.difficulty] - diffOrder[b.difficulty]
             : diffOrder[b.difficulty] - diffOrder[a.difficulty];
@@ -90,7 +88,7 @@ const AppContextProvider = ({ children }) => {
   // pagination states
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [probPerPage, setProbPerPage] = useState(5);
+  const [probPerPage, setProbPerPage] = useState(10);
 
   const lastProbIndex = currentPage * probPerPage;
   const firstprobIndex = lastProbIndex - probPerPage;
@@ -101,19 +99,61 @@ const AppContextProvider = ({ children }) => {
 
   // function to handle last update time 
   const formatTimeAgo = (date) => {
-    const now = new Date();
-    const seconds = Math.floor((now - date) / 1000);
-    const minutes = Math.floor(seconds / 60);
+    if (!date) return '--';
+
+    const now = Date.now();
+    const diff = Math.floor((now - new Date(date)) / 1000);
+
+    if (diff < 60) return 'Just now';
+
+    const minutes = Math.floor(diff / 60);
+    if (minutes < 60)
+      return `${minutes} minute${minutes === 1 ? '' : 's'} ago`;
+
     const hours = Math.floor(minutes / 60);
+    if (hours < 24)
+      return `${hours} hour${hours === 1 ? '' : 's'} ago`;
+
     const days = Math.floor(hours / 24);
+    if (days < 7)
+      return `${days} day${days === 1 ? '' : 's'} ago`;
+
+    const weeks = Math.floor(days / 7);
+    if (weeks < 4)
+      return `${weeks} week${weeks === 1 ? '' : 's'} ago`;
+
     const months = Math.floor(days / 30);
-
-    if (minutes < 1) return 'Just now';
-    if (hours < 1) return `${minutes} minutes${minutes === 1 ? '' : 's'} ago`;
-    if (days < 1) return `${hours} hour${hours === 1 ? '' : 's'} ago`;
-    if (months < 1) return `${days} day${days === 1 ? '' : 's'} ago`;
-
     return `${months} month${months === 1 ? '' : 's'} ago`;
+  };
+
+  // function to calculte problems states 
+  const calculateStats = (problems) => {
+    const stats = {
+      total : problems.length,
+      solved: 0,
+      attempted: 0,
+      unsolved: 0,
+      difficulty: {
+        easy: {total: 0, solved: 0},
+        medium: {total: 0, solved: 0},
+        hard: {total: 0, solved: 0}
+      }
+    };
+
+    for (const p of problems) {
+      // status counts
+      if (p.status === "solved") stats.solved++;
+      else if (p.status === "attempted") stats.attempted++;
+      else stats.unsolved++;
+
+      // difficulty counts
+      stats.difficulty[p.difficulty].total++;
+      if (p.status === "solved") {
+        stats.difficulty[p.difficulty].solved++;
+      }
+    }
+
+    return stats;
   }
 
   // to handle practice random problem
@@ -145,7 +185,7 @@ const AppContextProvider = ({ children }) => {
 
       setProblems([newProblem, ...problems])
       setActiveModal(MODALS.NONE)
-      setFormData({ title: '', platform: 'LeetCode', status: 'Unsolved', difficulty: 'Medium', link: '' })
+      setFormData({ title: '', platform: 'LeetCode', status: 'unsolved', difficulty: 'medium', link: '' })
     }
   }
 
@@ -189,7 +229,7 @@ const AppContextProvider = ({ children }) => {
         : p
       ));
     }
-    setFormData({ title: '', platform: 'LeetCode', status: 'Unsolved', difficulty: 'Medium', link: '' });
+    setFormData({ title: '', platform: 'LeetCode', status: 'unsolved', difficulty: 'medium', link: '' });
     setActiveModal(MODALS.NONE);
   };
 
@@ -266,7 +306,8 @@ const AppContextProvider = ({ children }) => {
     handleAddProblem, handlePracticeRandom,
     handleOpenEdit, handleConfirmEdit,
     handleUpdateStatus, formatTimeAgo,
-    handleConfirmDelete, handleDeleteProblem, deleteAllProblems, handleConfirmDeleteAll,
+    handleConfirmDelete, handleDeleteProblem, deleteAllProblems, handleConfirmDeleteAll, 
+    calculateStats
   };
 
   return (

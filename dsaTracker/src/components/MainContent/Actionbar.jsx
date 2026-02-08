@@ -1,12 +1,13 @@
 import useApp from "../../customHook/useApp"
 import SortDropdown from "../Utils/SortDropdown";
+import ProgressBar from "./Progressbar.jsx";
 
 function Actionbar() {
   
-  const { isDark, setActiveModal, MODALS, handlePracticeRandom, deleteAllProblems, problems } = useApp();  
+  const { isDark, setActiveModal, MODALS, handlePracticeRandom, deleteAllProblems, problems} = useApp();  
 
   const borderClass = isDark ? 'border-slate-700' : 'border-gray-200';
-
+  
   return (
     <>
       {/* Action Buttons */}
@@ -50,6 +51,8 @@ function Actionbar() {
           </div>
         </div>
       </div>
+
+      <ProgressBar />
 
     </>
   )

@@ -30,7 +30,7 @@ function UpdateStatusModal() {
 
           {/* Status buttons */}
           <div className="space-y-2">
-            {["Solved", "Attempted", "Unsolved"].map((status) => (
+            {["solved", "attempted", "unsolved"].map((status) => (
               <button
                 key={status}
                 onClick={() => handleUpdateStatus(status)}

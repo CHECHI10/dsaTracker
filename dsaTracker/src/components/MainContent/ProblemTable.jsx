@@ -6,6 +6,13 @@ function ProblemTable() {
 
   return (
     <>
+      {currentProblems.length === 0 ? (
+        <div className={`rounded-lg backdrop-blur-md border ${isDark ? 'bg-slate-800 bg-opacity-30 border-slate-700' : 'bg-white bg-opacity-30 border-white'} flex items-center justify-center h-64 shadow-xl transition-colors duration-300 mt-6`}>
+          <p className="text-2xl font-medium">No problems to display</p>
+        </div>
+      ) : (
+      
+
       <div className={`rounded-lg backdrop-blur-md border ${isDark ? 'bg-slate-800 bg-opacity-30 border-slate-700' : 'bg-white bg-opacity-30 border-white'} overflow-hidden shadow-xl transition-colors duration-300 mt-6`}>
         <div className="overflow-x-auto max-h-[calc(100vh-150px)] overflow-y-auto">
           <table className="w-full">
@@ -29,7 +36,7 @@ function ProblemTable() {
             </tbody>
           </table>
         </div>
-      </div>
+      </div> )}
     </>
   )
 }

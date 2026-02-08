@@ -92,11 +92,11 @@ export const UnsolvedCircleIcon = () => (
 
 export const StatusIcon = ({ status }) => {
   switch (status) {
-    case 'Solved':
+    case 'solved':
       return <CheckCircleIcon />
-    case 'Attempted':
+    case 'attempted':
       return <AttemptedCircleIcon />
-    case 'Unsolved':
+    case 'unsolved':
     default:
       return <UnsolvedCircleIcon />
   }
