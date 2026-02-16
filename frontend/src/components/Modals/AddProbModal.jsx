@@ -39,9 +39,9 @@ function AddProbModal() {
             onChange={(e) => setFormData({ ...formData, status: e.target.value })}
             className={`w-full px-4 py-2 rounded-lg border ${isDark ? 'bg-slate-700 border-slate-600 text-white' : 'bg-gray-100 border-gray-300 text-gray-900'} focus:outline-none focus:ring-2 focus:ring-cyan-500`}
           >
-            <option>Unsolved</option>
-            <option>Attempted</option>
-            <option>Solved</option>
+            <option value='unsolved'>Unsolved</option>
+            <option value='attempted'>Attempted</option>
+            <option value='solved'>Solved</option>
           </select>
         </div>
         <div>

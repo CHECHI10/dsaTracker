@@ -1,22 +1,24 @@
 import { useState, useEffect } from 'react';
 import AppContext from './AppContext';
 import MODALS from '../constants/modals';
+// import axios from 'axios';
+import { getProblems, addProblem, deleteProblem, updateProblem, deleteProblems } from '../api/problems';
 
-const InitialProblems = [  
-  { id: 1, title: 'Two Sum', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: '', link: 'hsh' },
-  { id: 2, title: 'Binary Tree Level Order Traversal', platform: 'LeetCode', status: 'attempted', difficulty: 'medium', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
-  { id: 3, title: 'Longest Increasing Subsequence', platform: 'CodeForces', status: 'unsolved', difficulty: 'hard', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
-  { id: 4, title: 'Valid Parentheses 4', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
-  { id: 5, title: 'Valid Parentheses 5', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
-  { id: 6, title: 'Valid Parentheses 6', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
-  { id: 7, title: 'Valid Parentheses 7', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
-  { id: 8, title: 'Valid Parentheses 8', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
-  { id: 9, title: 'Valid Parentheses 9', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
-  { id: 10, title: 'Valid Parentheses 10', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
-  { id: 11, title: 'Valid Parentheses 11', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
-  { id: 12, title: 'Valid Parentheses 12', platform: 'LeetCode', status:'solved' , difficulty:'easy' , lastUpdate : Date.now() - (3*24*6*6*1e3) , link : "hsh"},
-   
-];
+// const InitialProblems = [  
+//   { id: 1, title: 'Two Sum', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: '', link: 'hsh' },
+//   { id: 2, title: 'Binary Tree Level Order Traversal', platform: 'LeetCode', status: 'attempted', difficulty: 'medium', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
+//   { id: 3, title: 'Longest Increasing Subsequence', platform: 'CodeForces', status: 'unsolved', difficulty: 'hard', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
+//   { id: 4, title: 'Valid Parentheses 4', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
+//   { id: 5, title: 'Valid Parentheses 5', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
+//   { id: 6, title: 'Valid Parentheses 6', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
+//   { id: 7, title: 'Valid Parentheses 7', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
+//   { id: 8, title: 'Valid Parentheses 8', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
+//   { id: 9, title: 'Valid Parentheses 9', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
+//   { id: 10, title: 'Valid Parentheses 10', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
+//   { id: 11, title: 'Valid Parentheses 11', platform: 'LeetCode', status: 'solved', difficulty: 'easy', lastUpdate: Date.now() - 30 * 24 * 60 * 60 * 1000, link: 'hsh' },
+//   { id: 12, title: 'Valid Parentheses 12', platform: 'LeetCode', status:'solved' , difficulty:'easy' , lastUpdate : Date.now() - (3*24*6*6*1e3) , link : "hsh"},
+
+// ];
 
 // provider component
 const AppContextProvider = ({ children }) => {
@@ -24,7 +26,8 @@ const AppContextProvider = ({ children }) => {
   // state management
   const [isDark, setIsDark] = useState(true)
   const [sidebarOpen, setSidebarOpen] = useState(true)
-  const [problems, setProblems] = useState(InitialProblems)
+  // const [problems, setProblems] = useState(InitialProblems)
+  const [problems, setProblems] = useState([])
   const [formData, setFormData] = useState({ title: '', platform: 'LeetCode', status: 'unsolved', difficulty: 'medium', link: '', /* lastUpdateTime: new Date() */ lastUpdate: new Date() })
 
   // modal states
@@ -37,7 +40,7 @@ const AppContextProvider = ({ children }) => {
   // theme switchers
   const bgClass = isDark ? 'bg-slate-900' : 'bg-gray-50'
   const textClass = isDark ? 'text-white' : 'text-gray-900'
-  const secondaryBg = isDark ? 'bg-slate-800' : 'bg-white'          
+  const secondaryBg = isDark ? 'bg-slate-800' : 'bg-white'
   const borderClass = isDark ? 'border-slate-700' : 'border-gray-200'
   const hoverBg = isDark ? 'hover:bg-slate-700' : 'hover:bg-gray-100'
 
@@ -85,6 +88,13 @@ const AppContextProvider = ({ children }) => {
     return sorted;
   };
 
+  useEffect(() => {
+    getProblems()
+      .then(res => setProblems(res.data))
+      .catch(err => console.error("Failed to fetch problems", err));
+  }, []);
+
+
   // pagination states
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -95,7 +105,7 @@ const AppContextProvider = ({ children }) => {
 
   const sortedProblems = getSortedProblems();
   // directly use sortedproblems instead of problems.
-  const currentProblems = sortedProblems.slice(firstprobIndex, lastProbIndex);  
+  const currentProblems = sortedProblems.slice(firstprobIndex, lastProbIndex);
 
   // function to handle last update time 
   const formatTimeAgo = (date) => {
@@ -128,14 +138,14 @@ const AppContextProvider = ({ children }) => {
 
   const calculateStats = (problems) => {
     const stats = {
-      total : problems.length,
+      total: problems.length,
       solved: 0,
       attempted: 0,
       unsolved: 0,
       difficulty: {
-        easy: {total: 0, solved: 0},
-        medium: {total: 0, solved: 0},
-        hard: {total: 0, solved: 0}
+        easy: { total: 0, solved: 0 },
+        medium: { total: 0, solved: 0 },
+        hard: { total: 0, solved: 0 }
       }
     };
 
@@ -169,34 +179,45 @@ const AppContextProvider = ({ children }) => {
   }
 
   // to add new problem
-  const handleAddProblem = () => {
-    if (formData.title.trim()) {
-      const newProblem = {
-        id: Math.max(...problems.map((p) => p.id), 0) + 1,
-        title: formData.title,
-        platform: formData.platform,
-        status: formData.status,
-        difficulty: formData.difficulty,
-        // lastUpdateTime: new Date(),
-        lastUpdate: new Date(),
-        link: formData.link || '',
-      }
+  const handleAddProblem = async () => {
+    if (!formData.title.trim()) return;
+    try {
+      const res = await addProblem(formData);
+      const newProblem = res.data;
+      setProblems(prev => [newProblem, ...prev]);
 
-      setProblems([newProblem, ...problems])
       setActiveModal(MODALS.NONE)
       setFormData({ title: '', platform: 'LeetCode', status: 'unsolved', difficulty: 'medium', link: '' })
+    } catch (err) {
+      console.error("Failed to add problem", err);
     }
   }
 
   // to update problem status
-  const handleUpdateStatus = (newStatus) => {
-    if (updateStatusProblem) {
+  const handleUpdateStatus = async (newStatus) => {
+    /* if (updateStatusProblem) {
       setProblems(problems.map(p =>
         p.id === updateStatusProblem.id ? { ...p, status: newStatus } : p
       ))
-    }
+    } */
 
-    setActiveModal(MODALS.NONE);
+    if (!updateStatusProblem) return;
+
+    try {
+      const res = await updateProblem(updateStatusProblem.id, { status: newStatus });
+
+      const updatedProblem = res.data;
+
+      setProblems(prev =>
+        prev.map(p =>
+          p.id === updatedProblem.id ? updatedProblem : p
+        ))
+
+      setActiveModal(MODALS.NONE);
+
+    } catch (err) {
+      console.error("Failed to update problem status", err);
+    }
   };
 
   // to open modal for edit problem
@@ -213,8 +234,8 @@ const AppContextProvider = ({ children }) => {
   }
 
   // to confirm edit problem
-  const handleConfirmEdit = () => {
-    if (problemToEdit && formData.title.trim()) {
+  const handleConfirmEdit = async () => {
+    /* if (problemToEdit && formData.title.trim()) {
       setProblems(problems.map(p => p.id === problemToEdit.id ? {
         ...p,
         title: formData.title,
@@ -227,24 +248,22 @@ const AppContextProvider = ({ children }) => {
       }
         : p
       ));
-    }
-    setFormData({ title: '', platform: 'LeetCode', status: 'unsolved', difficulty: 'medium', link: '' });
-    setActiveModal(MODALS.NONE);
-  };
+    } */
 
-  // to confirm delete for single problem
-  const handleConfirmDelete = () => {
-    if (problemToDelete) {
-      setProblems(problems.filter(p => p.id !== problemToDelete.id));
+    if (!problemToEdit || !formData.title.trim()) return;
+
+    try {
+      const res = await updateProblem(problemToEdit.id, formData)
+
+      setProblems(prev => prev.map(p => p.id === problemToEdit.id ? res.data : p));
+
+      setFormData({ title: '', platform: 'LeetCode', status: 'unsolved', difficulty: 'medium', link: '' });
       setActiveModal(MODALS.NONE);
+    } catch (err) {
+        console.error("Failed to update problem", err);
+      return;
     }
   };
-
-  // to confirm delete for All problem
-  const handleConfirmDeleteAll = () => {
-    setProblems([]);
-    setActiveModal(MODALS.NONE);
-  }
 
   // to open modal for delete single problem
   const handleDeleteProblem = (problem) => {
@@ -252,10 +271,42 @@ const AppContextProvider = ({ children }) => {
     setActiveModal(MODALS.DELETE_SINGLE);
   };
 
-  // to open modal for delete all problems
+  // to confirm delete for single problem
+  const handleConfirmDelete = async () => {
+    /* if (problemToDelete) {
+      setProblems(problems.filter(p => p.id !== problemToDelete.id));
+      setActiveModal(MODALS.NONE);
+    } */
+
+    if (!problemToDelete) return;
+
+    try {
+      await deleteProblem(problemToDelete.id);
+
+      setProblems(prev => prev.filter(p => p.id !== problemToDelete.id));
+
+      setActiveModal(MODALS.NONE);
+    } catch (err) {
+      console.error("Failed to delete problem", err);
+    }
+
+  };
+
+   // to open modal for delete all problems
   const deleteAllProblems = () => {
     // Open a confirmation modal instead of deleting immediately
     setActiveModal(MODALS.DELETE_ALL);
+  }
+
+  // to confirm delete for All problem
+  const handleConfirmDeleteAll = async() => {
+    try {
+      await deleteProblems();
+      setProblems([]);
+      setActiveModal(MODALS.NONE);
+    } catch (err) {
+      console.error("Failed to delete all problems", err);
+    }
   }
 
   // responsive sidebar handling
@@ -284,7 +335,7 @@ const AppContextProvider = ({ children }) => {
     problems, setProblems, randomProblem, setRandomProblem, bgClass, textClass, borderClass, hoverBg,
 
     // pagination
-    currentProblems, currentPage, setCurrentPage, setProbPerPage, probPerPage, 
+    currentProblems, currentPage, setCurrentPage, setProbPerPage, probPerPage,
 
     // delete
     problemToDelete, setProblemToDelete,
@@ -305,7 +356,7 @@ const AppContextProvider = ({ children }) => {
     handleAddProblem, handlePracticeRandom,
     handleOpenEdit, handleConfirmEdit,
     handleUpdateStatus, formatTimeAgo,
-    handleConfirmDelete, handleDeleteProblem, deleteAllProblems, handleConfirmDeleteAll, 
+    handleConfirmDelete, handleDeleteProblem, deleteAllProblems, handleConfirmDeleteAll,
     calculateStats
   };
 
