@@ -3,7 +3,6 @@ import Actionbar from "./Actionbar.jsx";
 import AllModals from "../Modals/AllModals.jsx";
 import useApp from "../../customHook/useApp.js";
 import Pagination from "../Pagination/Pagination";
-import ProgressBar from "./Progressbar.jsx";
 
 function MainContent() {
   const { sidebarOpen } = useApp();
@@ -16,11 +15,11 @@ function MainContent() {
         <div className="max-w-7xl mx-auto space-y-6">
 
           <Actionbar />
-          
+
           <ProblemTable />
 
           <Pagination />
-          
+
         </div>
       </main>
     </>

@@ -1,91 +1,117 @@
 const express = require("express");
 const cors = require("cors");
-
+const mongoose = require("mongoose");
+const problemModel = require("./models/prob.model");
 
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-let problems = [
-  {
-    id: 1,
-    title: "Two Sum",
-    platform: "LeetCode",
-    status: "solved",
-    difficulty: "easy",
-    lastUpdate: new Date(),
-    link: "https://leetcode.com/problems/two-sum"
-  }
-];
-
-app.get("/problems", (req, res) => {
-  res.status(200).json(problems);
-})
-
-app.post("/problems", (req, res) => {
-  const { title, platform, status, difficulty, link } = req.body;
-
-  if (!title || !status || !difficulty) {
-    return res.status(400).json({ error: "Missing required fields" });
+const getErrorStatus = (error) => {
+  if (error.name === "ValidationError" || error.name === "CastError") {
+    return 400;
   }
 
-  const newProblem = {
-    id: Date.now(),
-    title,
-    platform: platform || "LeetCode",
-    status,
-    difficulty,
-    link: link || "",
-    lastUpdate: new Date()
-  };
+  return 500;
+};
 
-  problems = [newProblem, ...problems];
-
-  res.status(201).json(newProblem);
+app.get("/problems", async (req, res) => {
+  try {
+    const problems = await problemModel.find().sort({ lastUpdate: -1 });
+    res.status(200).json(problems);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
 });
 
-app.patch("/problems/:id", (req, res) => {
-  const id = Number(req.params.id);
-  const index = problems.findIndex(p => p.id === id);
-
-  if (index === -1) {
-    return res.status(404).json({ error: "Problem not found" });
+app.post("/problems", async (req, res) => {
+  try {
+    const { title, difficulty, platform, link, status } = req.body;
+    const problem = await problemModel.create({
+      title,
+      difficulty,
+      platform,
+      link,
+      status
+    });
+    res.status(201).json(problem);
+  } catch (error) {
+    res.status(getErrorStatus(error)).json({ error: error.message });
   }
-
-  problems[index] = {
-    ...problems[index],
-    ...req.body,
-    lastUpdate:
-      req.body.status && req.body.status !== problems[index].status
-        ? new Date()
-        : problems[index].lastUpdate
-  };
-
-  res.status(200).json(problems[index]);
 });
 
-app.delete('/problems/:id', (req, res) => {
-  const id = Number(req.params.id);
-  const index = problems.findIndex(p => p.id === id);
+app.patch("/problems/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
 
-  if (index === -1) {
-    return res.status(404).json({ error: "Problem not found" });
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: "Invalid problem id" });
+    }
+
+    const existingProblem = await problemModel.findById(id);
+    if (!existingProblem) {
+      return res.status(404).json({ error: "Problem not found" });
+    }
+
+    const allowedFields = ["title", "platform", "status", "difficulty", "link"];
+    const updateData = {};
+
+    allowedFields.forEach(field => {
+      if (req.body[field] !== undefined) {
+        updateData[field] = req.body[field];
+      }
+    });
+
+    if (
+      updateData.status &&
+      updateData.status !== existingProblem.status
+    ) {
+      updateData.lastUpdate = new Date();
+    }
+
+    const updatedProblem = await problemModel.findByIdAndUpdate(
+      id,
+      updateData,
+      { new: true, runValidators: true }
+    );
+
+    res.status(200).json(updatedProblem);
+  } catch (error) {
+    res.status(getErrorStatus(error)).json({ error: error.message });
+  }
+});
+
+
+app.delete('/problems/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: "Invalid problem id" });
+    }
+
+    const deleted = await problemModel.findByIdAndDelete(id);
+
+    if(!deleted) {
+      return res.status(404).json({ error: "Problem not found" });
+    }
+
+    res.status(200).json({ message: "Problem deleted successfully" });
+  } catch (error) {
+    res.status(getErrorStatus(error)).json({ error: error.message });
   }
 
-  problems = problems.filter(p => p.id !== id);
+});
 
-  res.status(200).json({ message: "Problem deleted successfully" });
-})
-
-app.delete('/problems', (req, res) => {
-  if (problems.length === 0) {
-    return res.status(400).json({ error: "No problems to delete" });
+app.delete('/problems', async (req, res) => {
+  try {
+    await problemModel.deleteMany({});
+    res.status(200).json({ message: "All problems deleted successfully" });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
   }
-
-  problems = [];
-  res.status(200).json({ message: "All problems deleted successfully" });
-})
+});
 
 
 module.exports = app;

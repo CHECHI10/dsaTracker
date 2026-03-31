@@ -7,7 +7,7 @@ function ProblemRow({ problem, idx}) {
   const { isDark, hoverBg, setUpdateStatusProblem, setActiveModal, MODALS, formatTimeAgo, handleOpenEdit, handleDeleteProblem} = useApp();
 
   return (
-    <tr key={problem.id} className={`${idx % 2 === 0 ? (isDark ? 'bg-slate-800 bg-opacity-20' : 'bg-white bg-opacity-20') : ''} transition-colors hover:cursor-pointer`}>
+    <tr key={problem._id} className={`${idx % 2 === 0 ? (isDark ? 'bg-slate-800 bg-opacity-20' : 'bg-white bg-opacity-20') : ''} transition-colors hover:cursor-pointer`}>
       <td className={`relative px-6 py-4 text-center ${hoverBg}`}
         onClick={() => {
           setUpdateStatusProblem(problem);

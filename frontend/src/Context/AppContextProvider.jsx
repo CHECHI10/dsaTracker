@@ -48,6 +48,8 @@ const AppContextProvider = ({ children }) => {
   const [sortBy, setSortBy] = useState('lastUpdate'); // Default sort
   const [sortOrder, setSortOrder] = useState('desc'); // 'asc' or 'desc'      
 
+  const getProblemId = (problem) => problem?._id || problem?.id;
+
   // Sort problems function
   const getSortedProblems = () => {
     const sorted = [...problems].sort((a, b) => {
@@ -204,13 +206,15 @@ const AppContextProvider = ({ children }) => {
     if (!updateStatusProblem) return;
 
     try {
-      const res = await updateProblem(updateStatusProblem.id, { status: newStatus });
+      const problemId = getProblemId(updateStatusProblem);
+      const res = await updateProblem(problemId, { status: newStatus });
 
       const updatedProblem = res.data;
+      const updatedProblemId = getProblemId(updatedProblem);
 
       setProblems(prev =>
         prev.map(p =>
-          p.id === updatedProblem.id ? updatedProblem : p
+          getProblemId(p) === updatedProblemId ? updatedProblem : p
         ))
 
       setActiveModal(MODALS.NONE);
@@ -253,9 +257,10 @@ const AppContextProvider = ({ children }) => {
     if (!problemToEdit || !formData.title.trim()) return;
 
     try {
-      const res = await updateProblem(problemToEdit.id, formData)
+      const problemId = getProblemId(problemToEdit);
+      const res = await updateProblem(problemId, formData)
 
-      setProblems(prev => prev.map(p => p.id === problemToEdit.id ? res.data : p));
+      setProblems(prev => prev.map(p => getProblemId(p) === problemId ? res.data : p));
 
       setFormData({ title: '', platform: 'LeetCode', status: 'unsolved', difficulty: 'medium', link: '' });
       setActiveModal(MODALS.NONE);
@@ -281,9 +286,10 @@ const AppContextProvider = ({ children }) => {
     if (!problemToDelete) return;
 
     try {
-      await deleteProblem(problemToDelete.id);
+      const problemId = getProblemId(problemToDelete);
+      await deleteProblem(problemId);
 
-      setProblems(prev => prev.filter(p => p.id !== problemToDelete.id));
+      setProblems(prev => prev.filter(p => getProblemId(p) !== problemId));
 
       setActiveModal(MODALS.NONE);
     } catch (err) {

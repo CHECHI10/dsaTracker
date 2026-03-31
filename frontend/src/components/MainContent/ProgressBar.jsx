@@ -6,7 +6,7 @@ function Progressbar() {
 
   const stats = calculateStats(problems);
   
-  console.log("STATS", stats)
+  // console.log("STATS", stats)
   return (
     <>
       <div className="w-full mt-6">
