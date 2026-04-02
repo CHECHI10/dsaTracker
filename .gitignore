@@ -12,6 +12,7 @@ node_modules
 .env.*
 dist
 build
+.vscode
 dist-ssr
 *.local
 
